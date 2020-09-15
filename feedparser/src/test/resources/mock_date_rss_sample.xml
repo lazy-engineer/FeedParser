@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <copyright>&#169; 2020 John Appleseed</copyright>
+        <description>
+            Love to get outdoors and discover nature&apos;s treasures? Hiking Treks is the
+            show for you. We review hikes and excursions, review outdoor gear and interview
+            a variety of naturalists and adventurers. Look for new episodes each week.
+        </description>
+        <item>
+            <pubDate>Tue, 8 Jan 2019 01:15:00 GMT</pubDate>
+        </item>
+        <item>
+            <description>
+                Tips for trekking around the tallest mountain in Oregon
+            </description>
+            <pubDate>Tue, 07 May 2019 12:00:00 GMT</pubDate>
+            <title>S02 EP04 Mt. Hood, Oregon</title>
+        </item>
+        <item>
+            <description>
+                We explore fun walks to climbing areas about the beautiful Colorado city of Boulder.
+            </description>
+            <link>href="http://example.com/podcasts/everything/</link>
+            <pubDate>Tue, 30 Apr 2019 13:00:00 EST</pubDate>
+            <title>S02 EP03 Bouldering Around Boulder</title>
+        </item>
+        <item>
+            <description>
+                Put your fitness to the test with this invigorating hill climb.
+            </description>
+            <pubDate>Tue, 23 May 2019 02:00:00 -0700</pubDate>
+            <title>S02 EP02 Caribou Mountain, Maine</title>
+        </item>
+        <item>
+            <description>
+                We tackle Stawamus Chief outside of Vancouver, BC and you should too!
+            </description>
+            <pubDate>2019-02-16T07:00:00.000Z</pubDate>
+            <title>S02 EP01 Stawamus Chief</title>
+        </item>
+        <item>
+            <description>
+                Oahu, Hawaii, has some picturesque hikes and this is one of the best!
+            </description>
+            <pubDate>Tue, 27 Nov 2018 01:15:00 +0000</pubDate>
+            <title>S01 EP04 Kuliouou Ridge Trail</title>
+        </item>
+        <item>
+            <description>
+                Hiking the Appalachian Trail and Freeman Trail in Georgia
+            </description>
+            <pubDate>Tue, 23 Oct 2018 01:15:00 +0000</pubDate>
+            <title>S01 EP03 Blood Mountain Loop</title>
+        </item>
+        <item>
+            <description>
+                Wilderness Area Garden of the Gods in Illinois is a delightful spot for
+                an extended hike.
+            </description>
+            <pubDate>Tue, 18 Sep 2018 01:15:00 +0000</pubDate>
+            <title>S01 EP02 Garden of the Gods Wilderness</title>
+        </item>
+        <item>
+            <description>
+                We check out this powerfully scenic hike following the river in the Idaho
+                Panhandle National Forests.
+            </description>
+            <pubDate>Tue, 14 Aug 2018 01:15:00 +0000</pubDate>
+            <title>S01 EP01 Upper Priest Lake Trail to Continental Creek Trail</title>
+        </item>
+        <language>en-us</language>
+        <link>https://www.apple.com/itunes/podcasts/</link>
+        <title>Hiking Treks</title>
+    </channel>
+</rss>

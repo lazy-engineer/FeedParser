@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel>
+        <copyright>&#169; 2020 John Appleseed</copyright>
+        <description>
+            Love to get outdoors and discover nature&apos;s treasures? Hiking Treks is the
+            show for you. We review hikes and excursions, review outdoor gear and interview
+            a variety of naturalists and adventurers. Look for new episodes each week.
+        </description>
+        <item>
+            <description>
+                <content:encoded>
+                    <![CDATA[The Sunset Explorers share tips, techniques and recommendations for
+          great hikes and adventures around the United States. Listen on
+          <a href="https://www.apple.com/itunes/podcasts/">Apple Podcasts</a>.]]>
+                </content:encoded>
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190418</guid>
+            <itunes:duration>1079</itunes:duration>
+            <itunes:episodeType>trailer</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:title>Hiking Treks Trailer</itunes:title>
+        </item>
+        <item>
+            <description>
+                Tips for trekking around the tallest mountain in Oregon
+            </description>
+            <enclosure length="8727310" type="audio/x-m4a" url="http://example.com/podcasts/everything/mthood.m4a" />
+            <guid>aae20190606</guid>
+            <itunes:duration>1024</itunes:duration>
+            <itunes:episode>4</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2</itunes:season>
+            <title>S02 EP04 Mt. Hood, Oregon</title>
+        </item>
+        <item>
+            <description>
+                We explore fun walks to climbing areas about the beautiful Colorado city of Boulder.
+            </description>
+            <enclosure length="5650889" type="video/mp4" url="http://example.com/podcasts/boulder.mp4" />
+            <guid>aae20190530</guid>
+            <itunes:duration>3627</itunes:duration>
+            <itunes:episode>3</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:image href="http://example.com/podcasts/everything/AllAboutEverything/Episode2.jpg" />
+            <itunes:season>2</itunes:season>
+            <link>href="http://example.com/podcasts/everything/</link>
+            <title>S02 EP03 Bouldering Around Boulder</title>
+        </item>
+        <item>
+            <description>
+                Put your fitness to the test with this invigorating hill climb.
+            </description>
+            <enclosure length="5650889" type="audio/x-m4v" url="http://example.com/podcasts/everything/caribou.m4v" />
+            <guid>aae20190523</guid>
+            <itunes:duration>2434</itunes:duration>
+            <itunes:episode>2</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:image href="http://example.com/podcasts/everything/AllAboutEverything/Episode3.jpg" />
+            <itunes:season>2</itunes:season>
+            <title>S02 EP02 Caribou Mountain, Maine</title>
+        </item>
+        <item>
+            <description>
+                We tackle Stawamus Chief outside of Vancouver, BC and you should too!
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190516</guid>
+            <itunes:duration>13:24</itunes:duration>
+            <itunes:episode>1</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2</itunes:season>
+            <title>S02 EP01 Stawamus Chief</title>
+        </item>
+        <item>
+            <description>
+                Oahu, Hawaii, has some picturesque hikes and this is one of the best!
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190509</guid>
+            <itunes:duration>929</itunes:duration>
+            <itunes:episode>4</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>1</itunes:season>
+            <title>S01 EP04 Kuliouou Ridge Trail</title>
+        </item>
+        <item>
+            <description>
+                Hiking the Appalachian Trail and Freeman Trail in Georgia
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190502</guid>
+            <itunes:duration>1440</itunes:duration>
+            <itunes:episode>3</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>1</itunes:season>
+            <title>S01 EP03 Blood Mountain Loop</title>
+        </item>
+        <item>
+            <description>
+                Wilderness Area Garden of the Gods in Illinois is a delightful spot for
+                an extended hike.
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190425</guid>
+            <itunes:duration>839</itunes:duration>
+            <itunes:episode>2</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>1</itunes:season>
+            <title>S01 EP02 Garden of the Gods Wilderness</title>
+        </item>
+        <item>
+            <description>
+                We check out this powerfully scenic hike following the river in the Idaho
+                Panhandle National Forests.
+            </description>
+            <enclosure length="498537" type="audio/mpeg" url="http://example.com/podcasts/everything/AllAboutEverythingEpisode4.mp3" />
+            <guid>aae20190418a</guid>
+            <itunes:duration>1399</itunes:duration>
+            <itunes:episode>1</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>1</itunes:season>
+            <title>S01 EP01 Upper Priest Lake Trail to Continental Creek Trail</title>
+        </item>
+        <itunes:author>The Sunset Explorers</itunes:author>
+        <itunes:category text="Sports">
+            <itunes:category text="Wilderness" />
+        </itunes:category>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:image href="https://applehosted.podcasts.apple.com/hiking_treks/artwork.png" />
+        <itunes:owner>
+            <itunes:email>mountainscape@icloud.com</itunes:email>
+            <itunes:name>Sunset Explorers</itunes:name>
+        </itunes:owner>
+        <itunes:type>serial</itunes:type>
+        <language>en-us</language>
+        <link>https://www.apple.com/itunes/podcasts/</link>
+        <title>Hiking Treks</title>
+    </channel>
+</rss>

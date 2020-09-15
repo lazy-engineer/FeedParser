@@ -1,0 +1,31 @@
+package io.github.lazyengineer.feedparser.model.namespace.media
+
+data class MediaNamespace(
+	var contents: MutableList<MediaContent> = mutableListOf(),
+	var rating: MediaRating? = null,
+	var title: MediaTitle? = null,
+	var description: MediaDescription? = null,
+	var keywords: MutableList<String> = mutableListOf(),
+	var thumbnails:  MutableList<MediaThumbnail> = mutableListOf(),
+	var category: MediaCategory? = null,
+	var credits: MutableList<MediaCredit> = mutableListOf(),
+	var copyright: MediaCopyright? = null,
+	var text: MediaText? = null,
+	var restriction: MediaRestriction? = null,
+	var status: MediaStatus? = null,
+	var price: MutableList<MediaPrice> = mutableListOf(),
+	var rights: MediaRights? = null,
+	var player: MediaPlayer? = null,
+	var hash: MediaHash? = null,
+	var group: MediaGroup? = null,
+	var community: MediaCommunity? = null,
+	var comments: MutableList<String> = mutableListOf(),
+	var responses: MutableList<String> = mutableListOf(),
+	var backLinks: MutableList<String> = mutableListOf(),
+	var embed: MediaEmbed? = null,
+	var license: MediaLicense? = null,
+	var subTitle: MediaSubTitle? = null,
+	var peerLink: MediaPeerLink? = null,
+	var location: MediaLocation? = null,
+	var scenes: MutableList<MediaScene> = mutableListOf()
+)
