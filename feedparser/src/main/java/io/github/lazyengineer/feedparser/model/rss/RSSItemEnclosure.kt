@@ -11,9 +11,9 @@ data class RSSItemEnclosure(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			url = attributes["url"],
-			length = attributes["length"]?.toInt(),
-			type = attributes["type"]
+				url = attributes["url"],
+				length = attributes["length"]?.toInt(),
+				type = attributes["type"]
 		)
 	}
 }

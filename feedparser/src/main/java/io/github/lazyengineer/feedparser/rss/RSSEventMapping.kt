@@ -55,7 +55,206 @@ import io.github.lazyengineer.feedparser.model.rss.RSSItemCategory
 import io.github.lazyengineer.feedparser.model.rss.RSSItemEnclosure
 import io.github.lazyengineer.feedparser.model.rss.RSSItemGUID
 import io.github.lazyengineer.feedparser.model.rss.RSSItemSource
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.*
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR_EMAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR_URI
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_CONTRIBUTOR_EMAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_CONTRIBUTOR_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_CONTRIBUTOR_URI
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_GENERATOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_ICON
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_ID
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_LOGO
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_RIGHTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_SUBTITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_UPDATED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_CLOUD
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_COPYRIGHT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DOCS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_COVERAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_CREATOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_DATE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_FORMAT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_IDENTIFIER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_LANGUAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_PUBLISHER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_RELATION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_RIGHTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_SOURCE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_SUBJECT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_DUBLIN_CORE_TYPE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_GENERATOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_IMAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_AUTHOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_AUTHOR_EMAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_AUTHOR_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_AUTHOR_URI
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CONTENT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CONTRIBUTOR_EMAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CONTRIBUTOR_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_CONTRIBUTOR_URI
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_ID
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_PUBLISHED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_RIGHTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_SOURCE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_SOURCE_ID
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_SOURCE_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_SOURCE_UPDATED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_SUMMARY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ATOM_UPDATED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_CONTENT_ENCODED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_COVERAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_CREATOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_DATE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_FORMAT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_IDENTIFIER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_LANGUAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_PUBLISHER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_RELATION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_RIGHTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_SOURCE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_SUBJECT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_DUBLIN_CORE_TYPE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_AUTHOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_BLOCK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_DURATION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_EPISODE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_EPISODE_TYPE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_EXPLICIT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_IMAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_IS_CLOSED_CAPTIONED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_KEYWORDS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_ORDER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_SEASON
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_SUBTITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_SUMMARY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_ITUNES_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_BACK_LINKS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_BACK_LINKS_BACK_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMENTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMENTS_MEDIA_COMMENT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMUNITY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_STAR_RATING
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_STATISTICS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_TAGS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_CREDIT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_HASH
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_KEYWORDS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_PLAYER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_RATING
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_TEXT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_THUMBNAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CONTENT_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_COPYRIGHT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_CREDIT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_EMBED
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_EMBED_MEDIA_PARAM
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_GROUP
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CONTENT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CREDIT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_GROUP_MEDIA_RATING
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_KEYWORDS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_LICENSE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_LOCATION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_LOCATION_POINT_POSITION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_LOCATION_POSITION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_LOCATION_WHERE_POSITION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_PEER_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_PRICE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_RATING
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_RESPONSES
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_RESPONSES_MEDIA_RESPONSE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_RESTRICTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_RIGHTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES_MEDIA_SCENE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES_MEDIA_SCENE_SCENE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES_MEDIA_SCENE_SCENE_END_TIME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES_MEDIA_SCENE_SCENE_START_TIME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SCENES_MEDIA_SCENE_SCENE_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_STATUS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_SUB_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_TEXT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_THUMBNAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITEM_MEDIA_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_AUTHOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_BLOCK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_COMPLETE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_EXPLICIT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_IMAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_KEYWORDS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_NEW_FEED_URL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_OWNER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_OWNER_EMAIL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_OWNER_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_SUBCATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_SUBTITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_SUMMARY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ITUNES_TYPE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_LANGUAGE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_LAST_BUILD_DATE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_MANAGING_EDITOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_PUB_DATE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_RATING
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SKIP_DAY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SKIP_DAYS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SKIP_HOUR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SKIP_HOURS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SYNDICATION_UPDATE_BASE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SYNDICATION_UPDATE_FREQUENCY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_SYNDICATION_UPDATE_PERIOD
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_TEXT_INPUT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_TTL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_WEB_MASTER
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_HEIGHT
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_URL
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.IMAGE_WIDTH
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_AUTHOR
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_CATEGORY
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_COMMENTS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_ENCLOSURE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_GUID
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_PUB_DATE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_SOURCE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_LINK
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import java.util.Locale
 
 fun RSSChannel.mapEvent(
@@ -147,65 +346,67 @@ fun RSSChannel.mapEvent(
 		CHANNEL_ITEM_MEDIA_THUMBNAIL -> items.last().mediaNamespace?.thumbnails?.add(MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes)))
 		CHANNEL_ITEM_MEDIA_CONTENT -> items.last().mediaNamespace?.contents?.add(MediaContent(attributes = MediaContent.Attributes(attributes)))
 		CHANNEL_ITEM_MEDIA_RATING -> items.last().mediaNamespace?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_TITLE -> items.last().mediaNamespace?.title = MediaTitle(value = value, attributes = MediaTitle.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_DESCRIPTION -> items.last().mediaNamespace?.description = MediaDescription(
-			value = value,
-			attributes = MediaDescription.Attributes(attributes)
+				value = value,
+				attributes = MediaDescription.Attributes(attributes)
 		)
-		CHANNEL_ITEM_MEDIA_KEYWORDS -> items.last().mediaNamespace?.keywords = value.split(", ".toRegex()).toMutableList()
+		CHANNEL_ITEM_MEDIA_KEYWORDS -> items.last().mediaNamespace?.keywords = value.split(", ".toRegex())
+				.toMutableList()
 		CHANNEL_ITEM_MEDIA_CATEGORY -> items.last().mediaNamespace?.category = MediaCategory(
-			value = value,
-			attributes = MediaCategory.Attributes(attributes)
+				value = value,
+				attributes = MediaCategory.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_CREDIT -> items.last().mediaNamespace?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		CHANNEL_ITEM_MEDIA_COPYRIGHT -> items.last().mediaNamespace?.copyright = MediaCopyright(
-			value = value,
-			attributes = MediaCopyright.Attributes(attributes)
+				value = value,
+				attributes = MediaCopyright.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_TEXT -> items.last().mediaNamespace?.text = MediaText(value = value, attributes = MediaText.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_RIGHTS -> items.last().mediaNamespace?.rights = MediaRights(attributes = MediaRights.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_CONTENT_TITLE -> items.last().mediaNamespace?.contents?.last()?.title = MediaTitle(
-			value = value,
-			attributes = MediaTitle.Attributes(attributes)
+				value = value,
+				attributes = MediaTitle.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_CONTENT_DESCRIPTION -> items.last().mediaNamespace?.contents?.last()?.description = MediaDescription(
-			value = value,
-			attributes = MediaDescription.Attributes(attributes)
+				value = value,
+				attributes = MediaDescription.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_CONTENT_PLAYER -> items.last().mediaNamespace?.player = MediaPlayer(attributes = MediaPlayer.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_CONTENT_HASH -> items.last().mediaNamespace?.hash = MediaHash(value = value, attributes = MediaHash.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_CONTENT_CREDIT -> items.last().mediaNamespace?.contents?.last()?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		CHANNEL_ITEM_MEDIA_CONTENT_THUMBNAIL -> items.last().mediaNamespace?.contents?.last()?.thumbnails?.add(
-			MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes))
+				MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes))
 		)
-		CHANNEL_ITEM_MEDIA_CONTENT_KEYWORDS -> items.last().mediaNamespace?.contents?.last()?.keywords = value.split(", ".toRegex()).toMutableList()
+		CHANNEL_ITEM_MEDIA_CONTENT_KEYWORDS -> items.last().mediaNamespace?.contents?.last()?.keywords = value.split(", ".toRegex())
+				.toMutableList()
 		CHANNEL_ITEM_MEDIA_CONTENT_CATEGORY -> items.last().mediaNamespace?.contents?.last()?.category = MediaCategory(
-			value = value, attributes = MediaCategory.Attributes(attributes)
+				value = value, attributes = MediaCategory.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_CONTENT_TEXT -> items.last().mediaNamespace?.text = MediaText(value = value, attributes = MediaText.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_CONTENT_RATING -> items.last().mediaNamespace?.contents?.last()?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_COMMUNITY -> items.last().mediaNamespace?.community = MediaCommunity()
 		CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_STAR_RATING -> items.last().mediaNamespace?.community?.starRating = MediaStarRating(
-			attributes = MediaStarRating.Attributes(attributes)
+				attributes = MediaStarRating.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_STATISTICS -> items.last().mediaNamespace?.community?.statistics = MediaStatistics(
-			attributes = MediaStatistics.Attributes(attributes)
+				attributes = MediaStatistics.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_COMMUNITY_MEDIA_TAGS -> items.last().mediaNamespace?.community?.tags = MediaTags(value = value)
 		CHANNEL_ITEM_MEDIA_COMMENTS -> { // Just a Container
@@ -213,7 +414,7 @@ fun RSSChannel.mapEvent(
 		CHANNEL_ITEM_MEDIA_COMMENTS_MEDIA_COMMENT -> items.last().mediaNamespace?.comments?.add(value)
 		CHANNEL_ITEM_MEDIA_EMBED -> items.last().mediaNamespace?.embed = MediaEmbed(attributes = MediaEmbed.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_EMBED_MEDIA_PARAM -> items.last().mediaNamespace?.embed?.params?.add(
-			MediaEmbedParam(value = value, attributes = MediaEmbedParam.Attributes(attributes))
+				MediaEmbedParam(value = value, attributes = MediaEmbedParam.Attributes(attributes))
 		)
 		CHANNEL_ITEM_MEDIA_RESPONSES -> { // Just a Container
 		}
@@ -224,17 +425,17 @@ fun RSSChannel.mapEvent(
 		CHANNEL_ITEM_MEDIA_STATUS -> items.last().mediaNamespace?.status = MediaStatus(attributes = MediaStatus.Attributes(attributes))
 		CHANNEL_ITEM_MEDIA_PRICE -> items.last().mediaNamespace?.price?.add(MediaPrice(attributes = MediaPrice.Attributes(attributes)))
 		CHANNEL_ITEM_MEDIA_LICENSE -> items.last().mediaNamespace?.license = MediaLicense(
-			value = value,
-			attributes = MediaLicense.Attributes(attributes)
+				value = value,
+				attributes = MediaLicense.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_SUB_TITLE -> items.last().mediaNamespace?.subTitle = MediaSubTitle(
-			attributes = MediaSubTitle.Attributes(attributes)
+				attributes = MediaSubTitle.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_PEER_LINK -> items.last().mediaNamespace?.peerLink = MediaPeerLink(
-			attributes = MediaPeerLink.Attributes(attributes)
+				attributes = MediaPeerLink.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_LOCATION -> items.last().mediaNamespace?.location = MediaLocation(
-			attributes = MediaLocation.Attributes(attributes)
+				attributes = MediaLocation.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_LOCATION_WHERE_POSITION -> { // Just a Container
 		}
@@ -242,8 +443,8 @@ fun RSSChannel.mapEvent(
 		}
 		CHANNEL_ITEM_MEDIA_LOCATION_POSITION -> items.last().mediaNamespace?.location?.position = value
 		CHANNEL_ITEM_MEDIA_RESTRICTION -> items.last().mediaNamespace?.restriction = MediaRestriction(
-			value = value,
-			attributes = MediaRestriction.Attributes(attributes)
+				value = value,
+				attributes = MediaRestriction.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_SCENES -> { // Just a Container
 		}
@@ -256,25 +457,25 @@ fun RSSChannel.mapEvent(
 			DateUtil.parseTimeString(value)
 		CHANNEL_ITEM_MEDIA_GROUP -> items.last().mediaNamespace?.group = MediaGroup()
 		CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CREDIT -> items.last().mediaNamespace?.group?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CATEGORY -> items.last().mediaNamespace?.group?.category = MediaCategory(
-			value = value,
-			attributes = MediaCategory.Attributes(attributes)
+				value = value,
+				attributes = MediaCategory.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_GROUP_MEDIA_RATING -> items.last().mediaNamespace?.group?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		CHANNEL_ITEM_MEDIA_GROUP_MEDIA_CONTENT -> items.last().mediaNamespace?.group?.contents?.add(
-			MediaContent(
-				attributes = MediaContent.Attributes(
-					attributes
+				MediaContent(
+						attributes = MediaContent.Attributes(
+								attributes
+						)
 				)
-			)
 		)
 
 		CHANNEL_ITEM_CONTENT_ENCODED -> items.last().contentNamespace?.encoded = value

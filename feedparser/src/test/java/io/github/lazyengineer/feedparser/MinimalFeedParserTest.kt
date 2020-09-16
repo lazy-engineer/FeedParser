@@ -2,9 +2,10 @@ package io.github.lazyengineer.feedparser
 
 import io.github.lazyengineer.feedparser.model.feed.RSSFeed
 import org.amshove.kluent.`should equal`
-import org.junit.*
-import org.junit.runner.*
-import org.mockito.junit.*
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.BufferedReader
@@ -26,8 +27,11 @@ class MinimalFeedParserTest {
 		val stringBuilder = StringBuilder()
 
 		var line: String?
-		while (rssReader.readLine().also { line = it } != null) {
-			stringBuilder.append(line).append('\n')
+		while (rssReader.readLine()
+						.also { line = it } != null
+		) {
+			stringBuilder.append(line)
+					.append('\n')
 		}
 
 		rssXML = stringBuilder.toString()

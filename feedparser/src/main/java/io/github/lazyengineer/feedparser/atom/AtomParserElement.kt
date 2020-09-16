@@ -130,7 +130,7 @@ enum class AtomParserElement(val element: String) {
 			var eventPath = if (previousPath.isNotEmpty()) previousPath else DEFAULT_ATOM_PATH
 
 			val elementStack = eventPath.split("/")
-				.filter { element -> element.isNotEmpty() }
+					.filter { element -> element.isNotEmpty() }
 
 			when {
 				depth < elementStack.size -> eventPath = addElementToPositionOfDepth(elementName, elementStack, depth)

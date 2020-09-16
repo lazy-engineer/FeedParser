@@ -5,7 +5,6 @@ import io.github.lazyengineer.feedparser.model.namespace.atom.AtomCategory
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomContent
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomContributor
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomLink
-import io.github.lazyengineer.feedparser.model.namespace.atom.AtomNamespace
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomSource
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomSummary
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomTitle

@@ -53,9 +53,12 @@ object FeedParser {
 			}
 
 			when (feedChannel) {
-				is RSSChannel -> xmlPullParser.mapRSSEvent(path, feedChannel)?.let { path = it }
-				is RDFChannel -> xmlPullParser.mapRDFEvent(path, feedChannel)?.let { path = it }
-				is AtomChannel -> xmlPullParser.mapAtomEvent(path, feedChannel)?.let { path = it }
+				is RSSChannel -> xmlPullParser.mapRSSEvent(path, feedChannel)
+						?.let { path = it }
+				is RDFChannel -> xmlPullParser.mapRDFEvent(path, feedChannel)
+						?.let { path = it }
+				is AtomChannel -> xmlPullParser.mapAtomEvent(path, feedChannel)
+						?.let { path = it }
 			}
 
 			eventType = xmlPullParser.next()
@@ -68,7 +71,10 @@ object FeedParser {
 		}
 	}
 
-	private fun XmlPullParser.mapRSSEvent(path: String, rssChannel: RSSChannel) : String? {
+	private fun XmlPullParser.mapRSSEvent(
+		path: String,
+		rssChannel: RSSChannel
+	): String? {
 		val event = getRSSEvent(path)
 
 		if (eventType == XmlPullParser.START_TAG) {
@@ -78,7 +84,10 @@ object FeedParser {
 		return if (event != UNSUPPORTED_RSS_ELEMENT) event.element else null
 	}
 
-	private fun XmlPullParser.mapRDFEvent(path: String, rdfChannel: RDFChannel) : String? {
+	private fun XmlPullParser.mapRDFEvent(
+		path: String,
+		rdfChannel: RDFChannel
+	): String? {
 		val event = getRDFEvent(path)
 
 		if (eventType == XmlPullParser.START_TAG) {
@@ -88,7 +97,10 @@ object FeedParser {
 		return if (event != UNSUPPORTED_RDF_ELEMENT) event.element else null
 	}
 
-	private fun XmlPullParser.mapAtomEvent(path: String, atomChannel: AtomChannel) : String? {
+	private fun XmlPullParser.mapAtomEvent(
+		path: String,
+		atomChannel: AtomChannel
+	): String? {
 		val event = getAtomEvent(path)
 
 		if (eventType == XmlPullParser.START_TAG) {
@@ -164,7 +176,11 @@ object FeedParser {
 	}
 
 	private fun XmlPullParser.nextTextOrEmpty() = try {
-		nextText().replace("\n", "").replace("\t", "").replace("\\s+".toRegex(), " ").trim().trimMargin()
+		nextText().replace("\n", "")
+				.replace("\t", "")
+				.replace("\\s+".toRegex(), " ")
+				.trim()
+				.trimMargin()
 	} catch (e: XmlPullParserException) {
 		String()
 	}

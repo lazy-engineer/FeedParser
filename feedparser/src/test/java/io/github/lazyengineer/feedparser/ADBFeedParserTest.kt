@@ -30,8 +30,11 @@ class ADBFeedParserTest {
 		val adbStringBuilder = StringBuilder()
 
 		var adbLine: String?
-		while (adbReader.readLine().also { adbLine = it } != null) {
-			adbStringBuilder.append(adbLine).append('\n')
+		while (adbReader.readLine()
+						.also { adbLine = it } != null
+		) {
+			adbStringBuilder.append(adbLine)
+					.append('\n')
 		}
 
 		adbXML = adbStringBuilder.toString()
@@ -216,8 +219,8 @@ class ADBFeedParserTest {
 	@Test
 	fun `parse adb xml string should return expected guid of the latest episode`() {
 		feed.items[0].guid `should equal` ItemGUID(
-			value = "tag:blogger.com,1999:blog-1052108547998082465.post-3561544422598285224",
-			isPermaLink = false
+				value = "tag:blogger.com,1999:blog-1052108547998082465.post-3561544422598285224",
+				isPermaLink = false
 		)
 	}
 

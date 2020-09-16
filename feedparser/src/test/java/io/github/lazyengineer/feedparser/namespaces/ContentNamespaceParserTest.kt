@@ -25,8 +25,11 @@ class ContentNamespaceParserTest {
 		val stringBuilder = StringBuilder()
 
 		var line: String?
-		while (rssReader.readLine().also { line = it } != null) {
-			stringBuilder.append(line).append('\n')
+		while (rssReader.readLine()
+						.also { line = it } != null
+		) {
+			stringBuilder.append(line)
+					.append('\n')
 		}
 
 		rssXML = stringBuilder.toString()

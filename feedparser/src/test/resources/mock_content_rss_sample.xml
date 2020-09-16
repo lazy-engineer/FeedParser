@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-    <channel>
-        <title>W3Schools Home Page</title>
-        <link>https://www.w3schools.com</link>
-        <description>Free web building tutorials</description>
-        <item>
-            <title>RSS Tutorial</title>
-            <link>https://www.w3schools.com/xml/xml_rss.asp</link>
-            <description>New RSS tutorial on W3Schools</description>
-            <content:encoded><![CDATA[<p>What a <em>beautiful</em> day!</p>]]></content:encoded>
-        </item>
-    </channel>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <description>Free web building tutorials</description>
+    <item>
+      <content:encoded><![CDATA[<p>What a <em>beautiful</em> day!</p>]]></content:encoded>
+      <description>New RSS tutorial on W3Schools</description>
+      <link>https://www.w3schools.com/xml/xml_rss.asp</link>
+      <title>RSS Tutorial</title>
+    </item>
+    <link>https://www.w3schools.com</link>
+    <title>W3Schools Home Page</title>
+  </channel>
 </rss>

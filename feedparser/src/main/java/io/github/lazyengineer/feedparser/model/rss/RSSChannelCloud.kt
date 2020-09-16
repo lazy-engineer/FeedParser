@@ -13,11 +13,11 @@ data class RSSChannelCloud(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			domain = attributes["domain"],
-			port = attributes["port"]?.toInt(),
-			path = attributes["path"],
-			registerProcedure = attributes["registerProcedure"],
-			protocol = attributes["protocol"]
+				domain = attributes["domain"],
+				port = attributes["port"]?.toInt(),
+				path = attributes["path"],
+				registerProcedure = attributes["registerProcedure"],
+				protocol = attributes["protocol"]
 		)
 	}
 }

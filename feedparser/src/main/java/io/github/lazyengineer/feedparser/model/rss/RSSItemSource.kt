@@ -10,7 +10,7 @@ data class RSSItemSource(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			url = attributes["url"]
+				url = attributes["url"]
 		)
 	}
 }

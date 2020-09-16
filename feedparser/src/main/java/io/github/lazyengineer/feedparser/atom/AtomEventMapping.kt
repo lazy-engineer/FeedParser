@@ -1,6 +1,101 @@
 package io.github.lazyengineer.feedparser.atom
 
-import io.github.lazyengineer.feedparser.atom.AtomParserElement.*
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_EMAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_NAME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_URI
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CATEGORY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CONTENT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CONTRIBUTOR_EMAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CONTRIBUTOR_NAME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_CONTRIBUTOR_URI
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_ID
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_LINK
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_PUBLISHED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_RIGHTS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_SOURCE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_SOURCE_ID
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_SOURCE_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_SOURCE_UPDATED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_SUMMARY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_UPDATED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_AUTHOR
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_AUTHOR_EMAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_AUTHOR_NAME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_AUTHOR_URI
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_CATEGORY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_CONTRIBUTOR_EMAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_CONTRIBUTOR_NAME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_CONTRIBUTOR_URI
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_BACK_LINKS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_BACK_LINKS_BACK_LINK
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CATEGORY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMENTS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMENTS_MEDIA_COMMENT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMUNITY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_STAR_RATING
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_STATISTICS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_TAGS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_CATEGORY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_CREDIT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_DESCRIPTION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_HASH
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_KEYWORDS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_PLAYER
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_RATING
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_TEXT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_THUMBNAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CONTENT_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_COPYRIGHT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_CREDIT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_DESCRIPTION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_EMBED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_EMBED_MEDIA_PARAM
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_GROUP
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_GROUP_MEDIA_CATEGORY
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_GROUP_MEDIA_CONTENT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_GROUP_MEDIA_CREDIT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_GROUP_MEDIA_RATING
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_KEYWORDS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_LICENSE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_LOCATION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_LOCATION_POINT_POSITION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_LOCATION_POSITION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_LOCATION_WHERE_POSITION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_PEER_LINK
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_PRICE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_RATING
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_RESPONSES
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_RESPONSES_MEDIA_RESPONSE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_RESTRICTION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_RIGHTS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES_MEDIA_SCENE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES_MEDIA_SCENE_SCENE_DESCRIPTION
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES_MEDIA_SCENE_SCENE_END_TIME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES_MEDIA_SCENE_SCENE_START_TIME
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SCENES_MEDIA_SCENE_SCENE_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_STATUS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_SUB_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_TEXT
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_THUMBNAIL
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ENTRY_MEDIA_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_GENERATOR
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ICON
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_ID
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_LINK
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_LOGO
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_RIGHTS
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_SUBTITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_TITLE
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_UPDATED
+import io.github.lazyengineer.feedparser.atom.AtomParserElement.UNSUPPORTED_ATOM_ELEMENT
 import io.github.lazyengineer.feedparser.model.DateUtil
 import io.github.lazyengineer.feedparser.model.atom.AtomEntry
 import io.github.lazyengineer.feedparser.model.channel.AtomChannel
@@ -49,9 +144,10 @@ fun AtomChannel.mapEvent(
 	value: String = String()
 ) {
 	when (eventType) {
-		FEED -> {}
-		FEED_TITLE -> title = AtomTitle(value= value, attributes = AtomTitle.Attributes(attributes))
-		FEED_SUBTITLE -> subtitle = AtomSubtitle(value= value, attributes = Attributes(attributes))
+		FEED -> {
+		}
+		FEED_TITLE -> title = AtomTitle(value = value, attributes = AtomTitle.Attributes(attributes))
+		FEED_SUBTITLE -> subtitle = AtomSubtitle(value = value, attributes = Attributes(attributes))
 		FEED_LINK -> links.add(AtomLink(attributes = AtomLink.Attributes(attributes)))
 		FEED_UPDATED -> updated = DateUtil.parseDateString(value)
 		FEED_CATEGORY -> categories.add(AtomCategory(attributes = AtomCategory.Attributes(attributes)))
@@ -95,65 +191,67 @@ fun AtomChannel.mapEvent(
 		FEED_ENTRY_MEDIA_THUMBNAIL -> entries.last().mediaNamespace?.thumbnails?.add(MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes)))
 		FEED_ENTRY_MEDIA_CONTENT -> entries.last().mediaNamespace?.contents?.add(MediaContent(attributes = MediaContent.Attributes(attributes)))
 		FEED_ENTRY_MEDIA_RATING -> entries.last().mediaNamespace?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_TITLE -> entries.last().mediaNamespace?.title = MediaTitle(value = value, attributes = MediaTitle.Attributes(attributes))
 		FEED_ENTRY_MEDIA_DESCRIPTION -> entries.last().mediaNamespace?.description = MediaDescription(
-			value = value,
-			attributes = MediaDescription.Attributes(attributes)
+				value = value,
+				attributes = MediaDescription.Attributes(attributes)
 		)
-		FEED_ENTRY_MEDIA_KEYWORDS -> entries.last().mediaNamespace?.keywords = value.split(", ".toRegex()).toMutableList()
+		FEED_ENTRY_MEDIA_KEYWORDS -> entries.last().mediaNamespace?.keywords = value.split(", ".toRegex())
+				.toMutableList()
 		FEED_ENTRY_MEDIA_CATEGORY -> entries.last().mediaNamespace?.category = MediaCategory(
-			value = value,
-			attributes = MediaCategory.Attributes(attributes)
+				value = value,
+				attributes = MediaCategory.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_CREDIT -> entries.last().mediaNamespace?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		FEED_ENTRY_MEDIA_COPYRIGHT -> entries.last().mediaNamespace?.copyright = MediaCopyright(
-			value = value,
-			attributes = MediaCopyright.Attributes(attributes)
+				value = value,
+				attributes = MediaCopyright.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_TEXT -> entries.last().mediaNamespace?.text = MediaText(value = value, attributes = MediaText.Attributes(attributes))
 		FEED_ENTRY_MEDIA_RIGHTS -> entries.last().mediaNamespace?.rights = MediaRights(attributes = MediaRights.Attributes(attributes))
 		FEED_ENTRY_MEDIA_CONTENT_TITLE -> entries.last().mediaNamespace?.contents?.last()?.title = MediaTitle(
-			value = value,
-			attributes = MediaTitle.Attributes(attributes)
+				value = value,
+				attributes = MediaTitle.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_CONTENT_DESCRIPTION -> entries.last().mediaNamespace?.contents?.last()?.description = MediaDescription(
-			value = value,
-			attributes = MediaDescription.Attributes(attributes)
+				value = value,
+				attributes = MediaDescription.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_CONTENT_PLAYER -> entries.last().mediaNamespace?.player = MediaPlayer(attributes = MediaPlayer.Attributes(attributes))
 		FEED_ENTRY_MEDIA_CONTENT_HASH -> entries.last().mediaNamespace?.hash = MediaHash(value = value, attributes = MediaHash.Attributes(attributes))
 		FEED_ENTRY_MEDIA_CONTENT_CREDIT -> entries.last().mediaNamespace?.contents?.last()?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		FEED_ENTRY_MEDIA_CONTENT_THUMBNAIL -> entries.last().mediaNamespace?.contents?.last()?.thumbnails?.add(
-			MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes))
+				MediaThumbnail(attributes = MediaThumbnail.Attributes(attributes))
 		)
-		FEED_ENTRY_MEDIA_CONTENT_KEYWORDS -> entries.last().mediaNamespace?.contents?.last()?.keywords = value.split(", ".toRegex()).toMutableList()
+		FEED_ENTRY_MEDIA_CONTENT_KEYWORDS -> entries.last().mediaNamespace?.contents?.last()?.keywords = value.split(", ".toRegex())
+				.toMutableList()
 		FEED_ENTRY_MEDIA_CONTENT_CATEGORY -> entries.last().mediaNamespace?.contents?.last()?.category = MediaCategory(
-			value = value, attributes = MediaCategory.Attributes(attributes)
+				value = value, attributes = MediaCategory.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_CONTENT_TEXT -> entries.last().mediaNamespace?.text = MediaText(value = value, attributes = MediaText.Attributes(attributes))
 		FEED_ENTRY_MEDIA_CONTENT_RATING -> entries.last().mediaNamespace?.contents?.last()?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_COMMUNITY -> entries.last().mediaNamespace?.community = MediaCommunity()
 		FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_STAR_RATING -> entries.last().mediaNamespace?.community?.starRating = MediaStarRating(
-			attributes = MediaStarRating.Attributes(attributes)
+				attributes = MediaStarRating.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_STATISTICS -> entries.last().mediaNamespace?.community?.statistics = MediaStatistics(
-			attributes = MediaStatistics.Attributes(attributes)
+				attributes = MediaStatistics.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_COMMUNITY_MEDIA_TAGS -> entries.last().mediaNamespace?.community?.tags = MediaTags(value = value)
 		FEED_ENTRY_MEDIA_COMMENTS -> { // Just a Container
@@ -161,7 +259,7 @@ fun AtomChannel.mapEvent(
 		FEED_ENTRY_MEDIA_COMMENTS_MEDIA_COMMENT -> entries.last().mediaNamespace?.comments?.add(value)
 		FEED_ENTRY_MEDIA_EMBED -> entries.last().mediaNamespace?.embed = MediaEmbed(attributes = MediaEmbed.Attributes(attributes))
 		FEED_ENTRY_MEDIA_EMBED_MEDIA_PARAM -> entries.last().mediaNamespace?.embed?.params?.add(
-			MediaEmbedParam(value = value, attributes = MediaEmbedParam.Attributes(attributes))
+				MediaEmbedParam(value = value, attributes = MediaEmbedParam.Attributes(attributes))
 		)
 		FEED_ENTRY_MEDIA_RESPONSES -> { // Just a Container
 		}
@@ -172,17 +270,17 @@ fun AtomChannel.mapEvent(
 		FEED_ENTRY_MEDIA_STATUS -> entries.last().mediaNamespace?.status = MediaStatus(attributes = MediaStatus.Attributes(attributes))
 		FEED_ENTRY_MEDIA_PRICE -> entries.last().mediaNamespace?.price?.add(MediaPrice(attributes = MediaPrice.Attributes(attributes)))
 		FEED_ENTRY_MEDIA_LICENSE -> entries.last().mediaNamespace?.license = MediaLicense(
-			value = value,
-			attributes = MediaLicense.Attributes(attributes)
+				value = value,
+				attributes = MediaLicense.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_SUB_TITLE -> entries.last().mediaNamespace?.subTitle = MediaSubTitle(
-			attributes = MediaSubTitle.Attributes(attributes)
+				attributes = MediaSubTitle.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_PEER_LINK -> entries.last().mediaNamespace?.peerLink = MediaPeerLink(
-			attributes = MediaPeerLink.Attributes(attributes)
+				attributes = MediaPeerLink.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_LOCATION -> entries.last().mediaNamespace?.location = MediaLocation(
-			attributes = MediaLocation.Attributes(attributes)
+				attributes = MediaLocation.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_LOCATION_WHERE_POSITION -> { // Just a Container
 		}
@@ -190,8 +288,8 @@ fun AtomChannel.mapEvent(
 		}
 		FEED_ENTRY_MEDIA_LOCATION_POSITION -> entries.last().mediaNamespace?.location?.position = value
 		FEED_ENTRY_MEDIA_RESTRICTION -> entries.last().mediaNamespace?.restriction = MediaRestriction(
-			value = value,
-			attributes = MediaRestriction.Attributes(attributes)
+				value = value,
+				attributes = MediaRestriction.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_SCENES -> { // Just a Container
 		}
@@ -204,27 +302,28 @@ fun AtomChannel.mapEvent(
 			DateUtil.parseTimeString(value)
 		FEED_ENTRY_MEDIA_GROUP -> entries.last().mediaNamespace?.group = MediaGroup()
 		FEED_ENTRY_MEDIA_GROUP_MEDIA_CREDIT -> entries.last().mediaNamespace?.group?.credits?.add(
-			MediaCredit(
-				value = value,
-				attributes = MediaCredit.Attributes(attributes)
-			)
+				MediaCredit(
+						value = value,
+						attributes = MediaCredit.Attributes(attributes)
+				)
 		)
 		FEED_ENTRY_MEDIA_GROUP_MEDIA_CATEGORY -> entries.last().mediaNamespace?.group?.category = MediaCategory(
-			value = value,
-			attributes = MediaCategory.Attributes(attributes)
+				value = value,
+				attributes = MediaCategory.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_GROUP_MEDIA_RATING -> entries.last().mediaNamespace?.group?.rating = MediaRating(
-			value = value,
-			attributes = MediaRating.Attributes(attributes)
+				value = value,
+				attributes = MediaRating.Attributes(attributes)
 		)
 		FEED_ENTRY_MEDIA_GROUP_MEDIA_CONTENT -> entries.last().mediaNamespace?.group?.contents?.add(
-			MediaContent(
-				attributes = MediaContent.Attributes(
-					attributes
+				MediaContent(
+						attributes = MediaContent.Attributes(
+								attributes
+						)
 				)
-			)
 		)
 
-		UNSUPPORTED_ATOM_ELEMENT -> {}
+		UNSUPPORTED_ATOM_ELEMENT -> {
+		}
 	}
 }

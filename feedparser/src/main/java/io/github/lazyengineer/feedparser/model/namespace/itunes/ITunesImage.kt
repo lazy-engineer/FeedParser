@@ -9,7 +9,7 @@ data class ITunesImage(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			href = attributes["href"]
+				href = attributes["href"]
 		)
 	}
 }

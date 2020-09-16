@@ -6,7 +6,7 @@ data class MediaNamespace(
 	var title: MediaTitle? = null,
 	var description: MediaDescription? = null,
 	var keywords: MutableList<String> = mutableListOf(),
-	var thumbnails:  MutableList<MediaThumbnail> = mutableListOf(),
+	var thumbnails: MutableList<MediaThumbnail> = mutableListOf(),
 	var category: MediaCategory? = null,
 	var credits: MutableList<MediaCredit> = mutableListOf(),
 	var copyright: MediaCopyright? = null,

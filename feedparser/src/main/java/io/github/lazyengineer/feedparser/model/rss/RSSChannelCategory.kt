@@ -10,7 +10,7 @@ data class RSSChannelCategory(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			domain = attributes["domain"]
+				domain = attributes["domain"]
 		)
 	}
 }

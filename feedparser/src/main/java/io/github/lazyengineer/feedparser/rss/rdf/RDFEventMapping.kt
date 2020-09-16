@@ -6,7 +6,64 @@ import io.github.lazyengineer.feedparser.model.namespace.syndication.Syndication
 import io.github.lazyengineer.feedparser.model.rss.RSSChannelImage
 import io.github.lazyengineer.feedparser.model.rss.RSSChannelItem
 import io.github.lazyengineer.feedparser.model.rss.RSSChannelTextInput
-import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.*
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_COVERAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_CREATOR
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_DATE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_FORMAT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_IDENTIFIER
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_LANGUAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_PUBLISHER
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_RELATION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_RIGHTS
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_SOURCE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_SUBJECT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_DUBLIN_CORE_TYPE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_IMAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_ITEMS
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_ITEMS_RDF_SEQ
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_ITEMS_RDF_SEQ_RDF_LI
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_LINK
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_SYNDICATION_UPDATE_BASE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_SYNDICATION_UPDATE_FREQUENCY
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_SYNDICATION_UPDATE_PERIOD
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_TEXT_INPUT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_IMAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_IMAGE_LINK
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_IMAGE_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_IMAGE_URL
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_CONTENT_ENCODED
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_CONTRIBUTOR
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_COVERAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_CREATOR
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_DATE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_FORMAT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_IDENTIFIER
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_LANGUAGE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_PUBLISHER
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_RELATION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_RIGHTS
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_SOURCE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_SUBJECT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_DUBLIN_CORE_TYPE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_LINK
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_ITEM_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_DESCRIPTION
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_LINK
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_NAME
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_TITLE
+import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.UNSUPPORTED_RDF_ELEMENT
 import java.util.Locale
 
 fun RDFChannel.mapEvent(
@@ -15,15 +72,18 @@ fun RDFChannel.mapEvent(
 	value: String = String()
 ) {
 	when (eventType) {
-		RDF -> {}
+		RDF -> {
+		}
 		RDF_CHANNEL -> this.attributes = RDFChannel.Attributes(attributes)
 		RDF_CHANNEL_TITLE -> title = value
 		RDF_CHANNEL_LINK -> link = value
 		RDF_CHANNEL_DESCRIPTION -> description = value
 		RDF_CHANNEL_IMAGE -> imageResource = attributes["rdf:resource"]
-		RDF_CHANNEL_ITEMS -> {}
+		RDF_CHANNEL_ITEMS -> {
+		}
 		RDF_CHANNEL_TEXT_INPUT -> textInputResource = attributes["rdf:resource"]
-		RDF_CHANNEL_ITEMS_RDF_SEQ -> {}
+		RDF_CHANNEL_ITEMS_RDF_SEQ -> {
+		}
 		RDF_CHANNEL_ITEMS_RDF_SEQ_RDF_LI -> itemsResource = attributes["resource"]
 
 		RDF_IMAGE -> image = RSSChannelImage(attributes = RSSChannelImage.Attributes(attributes))
@@ -79,6 +139,7 @@ fun RDFChannel.mapEvent(
 
 		RDF_ITEM_CONTENT_ENCODED -> items.last().contentNamespace?.encoded = value
 
-		UNSUPPORTED_RDF_ELEMENT -> {}
+		UNSUPPORTED_RDF_ELEMENT -> {
+		}
 	}
 }

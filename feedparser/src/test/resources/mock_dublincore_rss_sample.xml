@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <channel>
-        <title>W3Schools Home Page</title>
-        <link>https://www.w3schools.com</link>
-        <description>Free web building tutorials</description>
-        <dc:title>Dublin Core™ in XML</dc:title>
-        <dc:creator>creator</dc:creator>
-        <dc:subject>seafood</dc:subject>
-        <dc:description>
-            UKOLN is a national focus of expertise in digital information
-            management. It provides policy, research and awareness services
-            to the UK library, information and cultural heritage communities.
-            UKOLN is based at the University of Bath.
-        </dc:description>
-        <dc:publisher>UKOLN, University of Bath</dc:publisher>
-        <dc:contributor>contributor</dc:contributor>
-        <dc:date>2000-01-01T12:00+00:00</dc:date>
-        <dc:type>type</dc:type>
-        <dc:format>format</dc:format>
-        <dc:identifier>http://www.ukoln.ac.uk/</dc:identifier>
-        <dc:source>source</dc:source>
-        <dc:language>language</dc:language>
-        <dc:relation>relation</dc:relation>
-        <dc:coverage>coverage</dc:coverage>
-        <dc:rights>rights</dc:rights>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <dc:contributor>contributor</dc:contributor>
+    <dc:coverage>coverage</dc:coverage>
+    <dc:creator>creator</dc:creator>
+    <dc:date>2000-01-01T12:00+00:00</dc:date>
+    <dc:description>
+      UKOLN is a national focus of expertise in digital information
+      management. It provides policy, research and awareness services
+      to the UK library, information and cultural heritage communities.
+      UKOLN is based at the University of Bath.
+    </dc:description>
+    <dc:format>format</dc:format>
+    <dc:identifier>http://www.ukoln.ac.uk/</dc:identifier>
+    <dc:language>language</dc:language>
+    <dc:publisher>UKOLN, University of Bath</dc:publisher>
+    <dc:relation>relation</dc:relation>
+    <dc:rights>rights</dc:rights>
+    <dc:source>source</dc:source>
+    <dc:subject>seafood</dc:subject>
+    <dc:title>Dublin Core™ in XML</dc:title>
+    <dc:type>type</dc:type>
+    <description>Free web building tutorials</description>
+    <item>
+      <dc:contributor>contributor</dc:contributor>
+      <dc:coverage>coverage</dc:coverage>
+      <dc:creator>creator</dc:creator>
+      <dc:date>2000-01-01T12:00+00:00</dc:date>
+      <dc:description>description</dc:description>
+      <dc:format>format</dc:format>
+      <dc:identifier>identifier</dc:identifier>
+      <dc:language>language</dc:language>
+      <dc:publisher>publisher</dc:publisher>
+      <dc:relation>relation</dc:relation>
+      <dc:rights>rights</dc:rights>
+      <dc:source>source</dc:source>
+      <dc:subject>subject</dc:subject>
+      <dc:title>title</dc:title>
+      <dc:type>type</dc:type>
+      <description>New RSS tutorial on W3Schools</description>
+      <link>https://www.w3schools.com/xml/xml_rss.asp</link>
+      <title>RSS Tutorial</title>
+    </item>
+    <link>https://www.w3schools.com</link>
 
-        <item>
-            <title>RSS Tutorial</title>
-            <link>https://www.w3schools.com/xml/xml_rss.asp</link>
-            <description>New RSS tutorial on W3Schools</description>
-            <dc:title>title</dc:title>
-            <dc:creator>creator</dc:creator>
-            <dc:subject>subject</dc:subject>
-            <dc:description>description</dc:description>
-            <dc:publisher>publisher</dc:publisher>
-            <dc:contributor>contributor</dc:contributor>
-            <dc:date>2000-01-01T12:00+00:00</dc:date>
-            <dc:type>type</dc:type>
-            <dc:format>format</dc:format>
-            <dc:identifier>identifier</dc:identifier>
-            <dc:source>source</dc:source>
-            <dc:language>language</dc:language>
-            <dc:relation>relation</dc:relation>
-            <dc:coverage>coverage</dc:coverage>
-            <dc:rights>rights</dc:rights>
-        </item>
-    </channel>
+    <title>W3Schools Home Page</title>
+  </channel>
 </rss>

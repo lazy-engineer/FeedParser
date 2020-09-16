@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns="http://purl.org/rss/1.0/">
 
-    <channel rdf:about="http://meerkat.oreillynet.com/?_fl=rss1.0">
-        <title>Meerkat</title>
-        <link>http://meerkat.oreillynet.com</link>
-        <description>Meerkat: An Open Wire Service</description>
-        <sy:updatePeriod>hourly</sy:updatePeriod>
-        <sy:updateFrequency>2</sy:updateFrequency>
-        <sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>
+  <channel rdf:about="http://meerkat.oreillynet.com/?_fl=rss1.0">
+    <dc:contributor>contributor</dc:contributor>
+    <dc:coverage>coverage</dc:coverage>
+    <dc:creator>creator</dc:creator>
+    <dc:date>2000-01-01T12:00+00:00</dc:date>
+    <dc:description>
+      UKOLN is a national focus of expertise in digital information
+      management. It provides policy, research and awareness services
+      to the UK library, information and cultural heritage communities.
+      UKOLN is based at the University of Bath.
+    </dc:description>
+    <dc:format>format</dc:format>
 
-        <dc:title>Dublin Core™ in XML</dc:title>
-        <dc:creator>creator</dc:creator>
-        <dc:subject>seafood</dc:subject>
-        <dc:description>
-            UKOLN is a national focus of expertise in digital information
-            management. It provides policy, research and awareness services
-            to the UK library, information and cultural heritage communities.
-            UKOLN is based at the University of Bath.
-        </dc:description>
-        <dc:publisher>UKOLN, University of Bath</dc:publisher>
-        <dc:contributor>contributor</dc:contributor>
-        <dc:date>2000-01-01T12:00+00:00</dc:date>
-        <dc:type>type</dc:type>
-        <dc:format>format</dc:format>
-        <dc:identifier>http://www.ukoln.ac.uk/</dc:identifier>
-        <dc:source>source</dc:source>
-        <dc:language>language</dc:language>
-        <dc:relation>relation</dc:relation>
-        <dc:coverage>coverage</dc:coverage>
-        <dc:rights>rights</dc:rights>
+    <dc:identifier>http://www.ukoln.ac.uk/</dc:identifier>
+    <dc:language>language</dc:language>
+    <dc:publisher>UKOLN, University of Bath</dc:publisher>
+    <dc:relation>relation</dc:relation>
+    <dc:rights>rights</dc:rights>
+    <dc:source>source</dc:source>
+    <dc:subject>seafood</dc:subject>
+    <dc:title>Dublin Core™ in XML</dc:title>
+    <dc:type>type</dc:type>
+    <description>Meerkat: An Open Wire Service</description>
+    <image rdf:resource="http://meerkat.oreillynet.com/icons/meerkat-powered.jpg" />
+    <items>
+      <rdf:Seq>
+        <rdf:li resource="http://c.moreover.com/click/here.pl?r123" />
+      </rdf:Seq>
+    </items>
+    <link>http://meerkat.oreillynet.com</link>
+    <sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>
+    <sy:updateFrequency>2</sy:updateFrequency>
 
-        <image rdf:resource="http://meerkat.oreillynet.com/icons/meerkat-powered.jpg" />
+    <sy:updatePeriod>hourly</sy:updatePeriod>
 
-        <items>
-            <rdf:Seq>
-                <rdf:li resource="http://c.moreover.com/click/here.pl?r123" />
-            </rdf:Seq>
-        </items>
+    <textinput rdf:resource="http://meerkat.oreillynet.com" />
 
-        <textinput rdf:resource="http://meerkat.oreillynet.com" />
+    <title>Meerkat</title>
 
-    </channel>
+  </channel>
 
-    <image rdf:about="http://meerkat.oreillynet.com/icons/meerkat-powered.jpg">
-        <title>Meerkat Powered!</title>
-        <url>http://meerkat.oreillynet.com/icons/meerkat-powered.jpg</url>
-        <link>http://meerkat.oreillynet.com</link>
-    </image>
+  <image rdf:about="http://meerkat.oreillynet.com/icons/meerkat-powered.jpg">
+    <link>http://meerkat.oreillynet.com</link>
+    <title>Meerkat Powered!</title>
+    <url>http://meerkat.oreillynet.com/icons/meerkat-powered.jpg</url>
+  </image>
 
-    <item rdf:about="http://c.moreover.com/click/here.pl?r123">
-        <title>XML: A Disruptive Technology</title>
-        <link>http://c.moreover.com/click/here.pl?r123</link>
-        <description>
-            XML is placing increasingly heavy loads on the existing technical
-            infrastructure of the Internet.
-        </description>
+  <item rdf:about="http://c.moreover.com/click/here.pl?r123">
+    <dc:contributor>contributor</dc:contributor>
+    <dc:coverage>coverage</dc:coverage>
+    <dc:creator>creator</dc:creator>
 
-        <dc:title>title</dc:title>
-        <dc:creator>creator</dc:creator>
-        <dc:subject>subject</dc:subject>
-        <dc:description>description</dc:description>
-        <dc:publisher>publisher</dc:publisher>
-        <dc:contributor>contributor</dc:contributor>
-        <dc:date>2000-01-01T12:00+00:00</dc:date>
-        <dc:type>type</dc:type>
-        <dc:format>format</dc:format>
-        <dc:identifier>identifier</dc:identifier>
-        <dc:source>source</dc:source>
-        <dc:language>language</dc:language>
-        <dc:relation>relation</dc:relation>
-        <dc:coverage>coverage</dc:coverage>
-        <dc:rights>rights</dc:rights>
-    </item>
+    <dc:date>2000-01-01T12:00+00:00</dc:date>
+    <dc:description>description</dc:description>
+    <dc:format>format</dc:format>
+    <dc:identifier>identifier</dc:identifier>
+    <dc:language>language</dc:language>
+    <dc:publisher>publisher</dc:publisher>
+    <dc:relation>relation</dc:relation>
+    <dc:rights>rights</dc:rights>
+    <dc:source>source</dc:source>
+    <dc:subject>subject</dc:subject>
+    <dc:title>title</dc:title>
+    <dc:type>type</dc:type>
+    <description>
+      XML is placing increasingly heavy loads on the existing technical
+      infrastructure of the Internet.
+    </description>
+    <link>http://c.moreover.com/click/here.pl?r123</link>
+    <title>XML: A Disruptive Technology</title>
+  </item>
 
-    <textinput rdf:about="http://meerkat.oreillynet.com">
-        <title>Search Meerkat</title>
-        <description>Search Meerkat's RSS Database...</description>
-        <name>s</name>
-        <link>http://meerkat.oreillynet.com/</link>
-    </textinput>
+  <textinput rdf:about="http://meerkat.oreillynet.com">
+    <description>Search Meerkat's RSS Database...</description>
+    <link>http://meerkat.oreillynet.com/</link>
+    <name>s</name>
+    <title>Search Meerkat</title>
+  </textinput>
 </rdf:RDF>

@@ -10,7 +10,7 @@ data class RSSItemGUID(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			isPermaLink = attributes["isPermaLink"]?.toBoolean() ?: true
+				isPermaLink = attributes["isPermaLink"]?.toBoolean() ?: true
 		)
 	}
 }

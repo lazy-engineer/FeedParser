@@ -9,7 +9,7 @@ data class ITunesSubCategory(
 	) {
 
 		constructor(attributes: Map<String, String>) : this(
-			text = attributes["text"]
+				text = attributes["text"]
 		)
 	}
 }

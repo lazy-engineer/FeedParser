@@ -3,7 +3,8 @@ package io.github.lazyengineer.feedparser.atom
 import io.github.lazyengineer.feedparser.FeedParser
 import io.github.lazyengineer.feedparser.model.feed.AtomFeed
 import org.amshove.kluent.`should equal`
-import org.junit.*
+import org.junit.Before
+import org.junit.Test
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.BufferedReader
@@ -28,8 +29,11 @@ class AtomFeedParserTest {
 		val stringBuilder = StringBuilder()
 
 		var line: String?
-		while (rssReader.readLine().also { line = it } != null) {
-			stringBuilder.append(line).append('\n')
+		while (rssReader.readLine()
+						.also { line = it } != null
+		) {
+			stringBuilder.append(line)
+					.append('\n')
 		}
 
 		rssXML = stringBuilder.toString()
@@ -440,7 +444,8 @@ class AtomFeedParserTest {
 		feed.entries[6].mediaNamespace?.embed?.params?.get(3)?.value `should equal` "true"
 		feed.entries[6].mediaNamespace?.embed?.params?.get(3)?.attributes?.name `should equal` "allowFullScreen"
 
-		feed.entries[6].mediaNamespace?.embed?.params?.get(4)?.value `should equal` "id=12345&vid=678912i&lang=en-us&intl=us&thumbUrl=http://www.foo.com/thumbnail.jpg"
+		feed.entries[6].mediaNamespace?.embed?.params?.get(4
+		)?.value `should equal` "id=12345&vid=678912i&lang=en-us&intl=us&thumbUrl=http://www.foo.com/thumbnail.jpg"
 		feed.entries[6].mediaNamespace?.embed?.params?.get(4)?.attributes?.name `should equal` "flashVars"
 	}
 
@@ -518,7 +523,8 @@ class AtomFeedParserTest {
 	fun `parse atom mock xml string should return media content title and description element for seventh item`() {
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.title?.value `should equal` "The Judy's -- The Moo Song"
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.title?.attributes?.type `should equal` "plain"
-		feed.entries[7].mediaNamespace?.contents?.get(0)?.description?.value `should equal` "This was some really bizarre band I listened to as a young lad."
+		feed.entries[7].mediaNamespace?.contents?.get(0
+		)?.description?.value `should equal` "This was some really bizarre band I listened to as a young lad."
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.description?.attributes?.type `should equal` "plain"
 	}
 
@@ -527,7 +533,8 @@ class AtomFeedParserTest {
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.thumbnails?.get(0)?.attributes?.url `should equal` "http://www.foo.com/keyframe.jpg"
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.thumbnails?.get(0)?.attributes?.width `should equal` 75
 		feed.entries[7].mediaNamespace?.contents?.get(0)?.thumbnails?.get(0)?.attributes?.height `should equal` 50
-		feed.entries[7].mediaNamespace?.contents?.get(0)?.thumbnails?.get(0)?.attributes?.time `should equal` (12 * 60 * 60 * 1000) + (5 * 60 * 1000) + (1 * 1000) + 123L
+		feed.entries[7].mediaNamespace?.contents?.get(0)?.thumbnails?.get(0
+		)?.attributes?.time `should equal` (12 * 60 * 60 * 1000) + (5 * 60 * 1000) + (1 * 1000) + 123L
 	}
 
 	@Test

@@ -43,9 +43,9 @@ import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import org.amshove.kluent.`should equal`
-import org.junit.*
-import org.junit.runner.*
-import org.mockito.junit.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class ParserEventTest {
