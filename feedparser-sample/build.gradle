@@ -22,14 +22,27 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+
+  buildFeatures {
+    dataBinding true
+  }
 }
 
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
+  implementation project(path: ':feedparser')
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "androidx.core:core-ktx:$ktx_core_version"
   implementation "androidx.appcompat:appcompat:$appcompat_version"
   implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+  implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_extensions_version"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+  implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+  implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+  implementation "androidx.cardview:cardview:$cardview_version"
 
   testImplementation "junit:junit:$junit_version"
   androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
