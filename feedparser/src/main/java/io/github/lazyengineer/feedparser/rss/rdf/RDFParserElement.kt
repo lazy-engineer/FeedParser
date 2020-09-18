@@ -1,6 +1,8 @@
 package io.github.lazyengineer.feedparser.rss.rdf
 
-enum class RDFParserElement(val element: String) {
+import io.github.lazyengineer.feedparser.ParserElement
+
+enum class RDFParserElement(val element: String) : ParserElement {
 	RDF("/rdf:RDF"),
 	RDF_CHANNEL("/rdf:RDF/channel"),
 	RDF_CHANNEL_TITLE("/rdf:RDF/channel/title"),
@@ -65,68 +67,5 @@ enum class RDFParserElement(val element: String) {
 	RDF_ITEM_DUBLIN_CORE_RIGHTS("/rdf:RDF/item/dc:rights"),
 
 	// RDF Content Namespace
-	RDF_ITEM_CONTENT_ENCODED("/rdf:RDF/item/content:encoded"),
-
-	UNSUPPORTED_RDF_ELEMENT("unsupported rdf event");
-
-	companion object {
-
-		private const val DEFAULT_RDF_PATH = "/rdf:RDF"
-
-		fun from(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): RDFParserElement {
-			if (depth <= 0) return UNSUPPORTED_RDF_ELEMENT
-			val eventPath = getEventPathOfElement(elementName, previousPath, depth)
-
-			return values().find {
-				it.element == eventPath
-			} ?: UNSUPPORTED_RDF_ELEMENT
-		}
-
-		private fun getEventPathOfElement(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): String {
-			var eventPath = if (previousPath.isNotEmpty()) previousPath else DEFAULT_RDF_PATH
-
-			val elementStack = eventPath.split("/")
-					.filter { element -> element.isNotEmpty() }
-
-			when {
-				depth < elementStack.size -> eventPath = addElementToPositionOfDepth(elementName, elementStack, depth)
-				depth > elementStack.size -> eventPath += "/$elementName"
-				depth == elementStack.size -> if (elementName != elementStack[depth - 1]) eventPath =
-					replaceElementOnSameDepth(eventPath, elementName)
-			}
-
-			return eventPath
-		}
-
-		private fun replaceElementOnSameDepth(
-			eventPath: String,
-			elementName: String
-		) = "${eventPath.substringBeforeLast("/")}/$elementName"
-
-		private fun addElementToPositionOfDepth(
-			elementName: String,
-			elementStack: List<String>,
-			depth: Int
-		) = "${elementPathTillDepth(elementStack, depth)}/$elementName"
-
-		private fun elementPathTillDepth(
-			elementStack: List<String>,
-			depth: Int
-		): String {
-			var elementPath = String()
-			for (i in 0 until depth - 1) {
-				elementPath += "/${elementStack[i]}"
-			}
-
-			return elementPath
-		}
-	}
+	RDF_ITEM_CONTENT_ENCODED("/rdf:RDF/item/content:encoded")
 }

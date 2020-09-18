@@ -3,7 +3,6 @@ package io.github.lazyengineer.feedparser.atom
 import io.github.lazyengineer.feedparser.AttributeEvent
 import io.github.lazyengineer.feedparser.ContainerEvent
 import io.github.lazyengineer.feedparser.ParserEvent
-import io.github.lazyengineer.feedparser.UnsupportedEvent
 import io.github.lazyengineer.feedparser.ValueEvent
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_EMAIL
@@ -100,7 +99,6 @@ import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_RIGHTS
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_SUBTITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_TITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_UPDATED
-import io.github.lazyengineer.feedparser.atom.AtomParserElement.UNSUPPORTED_ATOM_ELEMENT
 
 fun AtomParserElement.classify(): ParserEvent = when (this) {
 	FEED -> ContainerEvent
@@ -200,6 +198,4 @@ fun AtomParserElement.classify(): ParserEvent = when (this) {
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_CATEGORY -> ValueEvent
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_CONTENT -> AttributeEvent
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_RATING -> ValueEvent
-
-	UNSUPPORTED_ATOM_ELEMENT -> UnsupportedEvent
 }

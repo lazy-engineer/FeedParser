@@ -3,7 +3,6 @@ package io.github.lazyengineer.feedparser.rss
 import io.github.lazyengineer.feedparser.AttributeEvent
 import io.github.lazyengineer.feedparser.ContainerEvent
 import io.github.lazyengineer.feedparser.ParserEvent
-import io.github.lazyengineer.feedparser.UnsupportedEvent
 import io.github.lazyengineer.feedparser.ValueEvent
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_ATOM_AUTHOR_EMAIL
@@ -200,13 +199,16 @@ import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_PUB_DATE
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_SOURCE
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.RSS
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.RSS_CHANNEL
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_DESCRIPTION
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 
 fun RSSParserElement.classify(): ParserEvent = when (this) {
+	RSS -> ContainerEvent
+	RSS_CHANNEL -> ContainerEvent
 	CHANNEL_TITLE -> ValueEvent
 	CHANNEL_LINK -> ValueEvent
 	CHANNEL_DESCRIPTION -> ValueEvent
@@ -412,6 +414,4 @@ fun RSSParserElement.classify(): ParserEvent = when (this) {
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR_NAME -> ValueEvent
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR_EMAIL -> ValueEvent
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR_URI -> ValueEvent
-
-	UNSUPPORTED_RSS_ELEMENT -> UnsupportedEvent
 }

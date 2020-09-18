@@ -99,7 +99,6 @@ import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_RIGHTS
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_SUBTITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_TITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_UPDATED
-import io.github.lazyengineer.feedparser.atom.AtomParserElement.UNSUPPORTED_ATOM_ELEMENT
 import org.amshove.kluent.`should be instance of`
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -107,13 +106,6 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class AtomEventClassifierTest {
-
-	@Test
-	fun `unsupported element should be classified as unsupported event`() {
-		val parserElement: AtomParserElement = UNSUPPORTED_ATOM_ELEMENT
-
-		parserElement.classify() `should be instance of` UnsupportedEvent.javaClass
-	}
 
 	@Test
 	fun `feed title element should be classified as value event`() {

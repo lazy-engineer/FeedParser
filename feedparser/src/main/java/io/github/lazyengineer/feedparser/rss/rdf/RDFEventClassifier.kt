@@ -3,7 +3,6 @@ package io.github.lazyengineer.feedparser.rss.rdf
 import io.github.lazyengineer.feedparser.AttributeEvent
 import io.github.lazyengineer.feedparser.ContainerEvent
 import io.github.lazyengineer.feedparser.ParserEvent
-import io.github.lazyengineer.feedparser.UnsupportedEvent
 import io.github.lazyengineer.feedparser.ValueEvent
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_CHANNEL
@@ -62,7 +61,6 @@ import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.UNSUPPORTED_RDF_ELEMENT
 
 fun RDFParserElement.classify(): ParserEvent = when (this) {
 	RDF -> ContainerEvent
@@ -128,6 +126,4 @@ fun RDFParserElement.classify(): ParserEvent = when (this) {
 	RDF_ITEM_DUBLIN_CORE_RIGHTS -> ValueEvent
 
 	RDF_ITEM_CONTENT_ENCODED -> ValueEvent
-
-	UNSUPPORTED_RDF_ELEMENT -> UnsupportedEvent
 }

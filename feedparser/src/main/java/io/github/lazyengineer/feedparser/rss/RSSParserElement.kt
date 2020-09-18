@@ -1,7 +1,11 @@
 package io.github.lazyengineer.feedparser.rss
 
-enum class RSSParserElement(val element: String) {
+import io.github.lazyengineer.feedparser.ParserElement
+
+enum class RSSParserElement(val element: String) : ParserElement {
 	// RSS <channel> Element
+	RSS("/rss"),
+	RSS_CHANNEL("/rss/channel"),
 	CHANNEL_TITLE("/rss/channel/title"), // Required. Defines the title of the channel
 	CHANNEL_LINK("/rss/channel/link"),  // Required. Defines the hyperlink to the channel
 	CHANNEL_DESCRIPTION("/rss/channel/description"), // Required. Describes the channel
@@ -219,68 +223,5 @@ enum class RSSParserElement(val element: String) {
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR("/rss/channel/item/atom:contributor"),
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR_NAME("/rss/channel/item/atom:contributor/atom:name"),
 	CHANNEL_ITEM_ATOM_CONTRIBUTOR_EMAIL("/rss/channel/item/atom:contributor/atom:email"),
-	CHANNEL_ITEM_ATOM_CONTRIBUTOR_URI("/rss/channel/item/atom:contributor/atom:uri"),
-
-	UNSUPPORTED_RSS_ELEMENT("unsupported rss event");
-
-	companion object {
-
-		private const val DEFAULT_RSS_PATH = "/rss/channel"
-
-		fun from(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): RSSParserElement {
-			if (depth <= 0) return UNSUPPORTED_RSS_ELEMENT
-			val eventPath = getEventPathOfElement(elementName, previousPath, depth)
-
-			return values().find {
-				it.element == eventPath
-			} ?: UNSUPPORTED_RSS_ELEMENT
-		}
-
-		private fun getEventPathOfElement(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): String {
-			var eventPath = if (previousPath.isNotEmpty()) previousPath else DEFAULT_RSS_PATH
-
-			val elementStack = eventPath.split("/")
-					.filter { element -> element.isNotEmpty() }
-
-			when {
-				depth < elementStack.size -> eventPath = addElementToPositionOfDepth(elementName, elementStack, depth)
-				depth > elementStack.size -> eventPath += "/$elementName"
-				depth == elementStack.size -> if (elementName != elementStack[depth - 1]) eventPath =
-					replaceElementOnSameDepth(eventPath, elementName)
-			}
-
-			return eventPath
-		}
-
-		private fun replaceElementOnSameDepth(
-			eventPath: String,
-			elementName: String
-		) = "${eventPath.substringBeforeLast("/")}/$elementName"
-
-		private fun addElementToPositionOfDepth(
-			elementName: String,
-			elementStack: List<String>,
-			depth: Int
-		) = "${elementPathTillDepth(elementStack, depth)}/$elementName"
-
-		private fun elementPathTillDepth(
-			elementStack: List<String>,
-			depth: Int
-		): String {
-			var elementPath = String()
-			for (i in 0 until depth - 1) {
-				elementPath += "/${elementStack[i]}"
-			}
-
-			return elementPath
-		}
-	}
+	CHANNEL_ITEM_ATOM_CONTRIBUTOR_URI("/rss/channel/item/atom:contributor/atom:uri")
 }

@@ -203,7 +203,6 @@ import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_DESCRIP
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import org.amshove.kluent.`should be instance of`
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -211,13 +210,6 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class RSSEventClassifierTest {
-
-	@Test
-	fun `unsupported element should be classified as unsupported event`() {
-		val parserElement: RSSParserElement = UNSUPPORTED_RSS_ELEMENT
-
-		parserElement.classify() `should be instance of` UnsupportedEvent.javaClass
-	}
 
 	@Test
 	fun `channel title element should be classified as value event`() {

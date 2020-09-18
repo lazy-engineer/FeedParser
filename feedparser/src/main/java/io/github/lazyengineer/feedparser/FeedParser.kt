@@ -1,7 +1,6 @@
 package io.github.lazyengineer.feedparser
 
 import io.github.lazyengineer.feedparser.atom.AtomParserElement
-import io.github.lazyengineer.feedparser.atom.AtomParserElement.UNSUPPORTED_ATOM_ELEMENT
 import io.github.lazyengineer.feedparser.atom.classify
 import io.github.lazyengineer.feedparser.atom.mapEvent
 import io.github.lazyengineer.feedparser.atom.toFeed
@@ -11,11 +10,9 @@ import io.github.lazyengineer.feedparser.model.channel.RDFChannel
 import io.github.lazyengineer.feedparser.model.channel.RSSChannel
 import io.github.lazyengineer.feedparser.model.feed.Feed
 import io.github.lazyengineer.feedparser.rss.RSSParserElement
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import io.github.lazyengineer.feedparser.rss.classify
 import io.github.lazyengineer.feedparser.rss.mapEvent
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement
-import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.UNSUPPORTED_RDF_ELEMENT
 import io.github.lazyengineer.feedparser.rss.rdf.classify
 import io.github.lazyengineer.feedparser.rss.rdf.mapEvent
 import io.github.lazyengineer.feedparser.rss.rdf.toFeed
@@ -52,14 +49,8 @@ object FeedParser {
 				}
 			}
 
-			when (feedChannel) {
-				is RSSChannel -> xmlPullParser.mapRSSEvent(path, feedChannel)
-						?.let { path = it }
-				is RDFChannel -> xmlPullParser.mapRDFEvent(path, feedChannel)
-						?.let { path = it }
-				is AtomChannel -> xmlPullParser.mapAtomEvent(path, feedChannel)
-						?.let { path = it }
-			}
+			xmlPullParser.mapEvent(path, feedChannel)
+					?.let { path = it }
 
 			eventType = xmlPullParser.next()
 		}
@@ -71,81 +62,52 @@ object FeedParser {
 		}
 	}
 
-	private fun XmlPullParser.mapRSSEvent(
+	private fun XmlPullParser.mapEvent(
 		path: String,
-		rssChannel: RSSChannel
+		feedChannel: FeedChannel
 	): String? {
-		val event = getRSSEvent(path)
+		val event = getEvent(path)
 
-		if (eventType == XmlPullParser.START_TAG) {
-			rssChannel.mapStartEvent(event, this)
+		if (event != null && eventType == XmlPullParser.START_TAG) {
+			feedChannel.mapStartEvent(event, this)
 		}
 
-		return if (event != UNSUPPORTED_RSS_ELEMENT) event.element else null
-	}
-
-	private fun XmlPullParser.mapRDFEvent(
-		path: String,
-		rdfChannel: RDFChannel
-	): String? {
-		val event = getRDFEvent(path)
-
-		if (eventType == XmlPullParser.START_TAG) {
-			rdfChannel.mapStartEvent(event, this)
+		return when (feedChannel) {
+			is RSSChannel -> if (event != null) (event as RSSParserElement).element else null
+			is RDFChannel -> if (event != null) (event as RDFParserElement).element else null
+			is AtomChannel -> if (event != null) (event as AtomParserElement).element else null
 		}
-
-		return if (event != UNSUPPORTED_RDF_ELEMENT) event.element else null
 	}
 
-	private fun XmlPullParser.mapAtomEvent(
-		path: String,
-		atomChannel: AtomChannel
-	): String? {
-		val event = getAtomEvent(path)
-
-		if (eventType == XmlPullParser.START_TAG) {
-			atomChannel.mapStartEvent(event, this)
-		}
-
-		return if (event != UNSUPPORTED_ATOM_ELEMENT) event.element else null
-	}
-
-	private fun RSSChannel.mapStartEvent(
-		element: RSSParserElement,
+	private fun FeedChannel.mapStartEvent(
+		element: ParserElement,
 		xmlPullParser: XmlPullParser
 	) {
-		when (element.classify()) {
-			ValueEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes(), value = xmlPullParser.nextTextOrEmpty())
-			AttributeEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes())
-			ContainerEvent -> mapEvent(eventType = element)
+		when (element.classifyElement()) {
+			ValueEvent -> mapParserEvent(eventType = element, attributes = xmlPullParser.attributes(), value = xmlPullParser.nextTextOrEmpty())
+			AttributeEvent -> mapParserEvent(eventType = element, attributes = xmlPullParser.attributes())
+			ContainerEvent -> mapParserEvent(eventType = element)
 			UnsupportedEvent -> {
 			}
 		}
 	}
 
-	private fun RDFChannel.mapStartEvent(
-		element: RDFParserElement,
-		xmlPullParser: XmlPullParser
-	) {
-		when (element.classify()) {
-			ValueEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes(), value = xmlPullParser.nextTextOrEmpty())
-			AttributeEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes())
-			ContainerEvent -> mapEvent(eventType = element)
-			UnsupportedEvent -> {
-			}
-		}
+	private fun ParserElement.classifyElement() = when (this) {
+		is RSSParserElement -> this.classify()
+		is RDFParserElement -> this.classify()
+		is AtomParserElement -> this.classify()
+		else -> UnsupportedEvent
 	}
 
-	private fun AtomChannel.mapStartEvent(
-		element: AtomParserElement,
-		xmlPullParser: XmlPullParser
+	private fun FeedChannel.mapParserEvent(
+		eventType: ParserElement,
+		attributes: Map<String, String> = emptyMap(),
+		value: String = String()
 	) {
-		when (element.classify()) {
-			ValueEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes(), value = xmlPullParser.nextTextOrEmpty())
-			AttributeEvent -> mapEvent(eventType = element, attributes = xmlPullParser.attributes())
-			ContainerEvent -> mapEvent(eventType = element)
-			UnsupportedEvent -> {
-			}
+		when (this) {
+			is RSSChannel -> this.mapEvent(eventType, attributes, value)
+			is RDFChannel -> this.mapEvent(eventType, attributes, value)
+			is AtomChannel -> this.mapEvent(eventType, attributes, value)
 		}
 	}
 
@@ -157,22 +119,10 @@ object FeedParser {
 		return attributes
 	}
 
-	private fun XmlPullParser.getRSSEvent(path: String): RSSParserElement = try {
-		if (name != null) RSSParserElement.from(name, path, depth) else UNSUPPORTED_RSS_ELEMENT
+	private fun XmlPullParser.getEvent(path: String): ParserElement? = try {
+		if (name != null) ParserElement.from(name, path, depth) else null
 	} catch (e: IllegalArgumentException) {
-		UNSUPPORTED_RSS_ELEMENT
-	}
-
-	private fun XmlPullParser.getRDFEvent(path: String): RDFParserElement = try {
-		if (name != null) RDFParserElement.from(name, path, depth) else UNSUPPORTED_RDF_ELEMENT
-	} catch (e: IllegalArgumentException) {
-		UNSUPPORTED_RDF_ELEMENT
-	}
-
-	private fun XmlPullParser.getAtomEvent(path: String): AtomParserElement = try {
-		if (name != null) AtomParserElement.from(name, path, depth) else UNSUPPORTED_ATOM_ELEMENT
-	} catch (e: IllegalArgumentException) {
-		UNSUPPORTED_ATOM_ELEMENT
+		null
 	}
 
 	private fun XmlPullParser.nextTextOrEmpty() = try {

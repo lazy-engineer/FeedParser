@@ -1,7 +1,8 @@
 package io.github.lazyengineer.feedparser.atom
 
-enum class AtomParserElement(val element: String) {
+import io.github.lazyengineer.feedparser.ParserElement
 
+enum class AtomParserElement(val element: String) : ParserElement {
 	// Atom <feed> Element
 	FEED("/feed"),
 	FEED_TITLE("/feed/title"),
@@ -101,68 +102,5 @@ enum class AtomParserElement(val element: String) {
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_CREDIT("/feed/entry/media:group/media:credit"),
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_CATEGORY("/feed/entry/media:group/media:category"),
 	FEED_ENTRY_MEDIA_GROUP_MEDIA_RATING("/feed/entry/media:group/media:rating"),
-	FEED_ENTRY_MEDIA_GROUP_MEDIA_CONTENT("/feed/entry/media:group/media:content"),
-
-	UNSUPPORTED_ATOM_ELEMENT("unsupported atom event");
-
-	companion object {
-
-		private const val DEFAULT_ATOM_PATH = "/feed"
-
-		fun from(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): AtomParserElement {
-			if (depth <= 0) return UNSUPPORTED_ATOM_ELEMENT
-			val eventPath = getEventPathOfElement(elementName, previousPath, depth)
-
-			return values().find {
-				it.element == eventPath
-			} ?: UNSUPPORTED_ATOM_ELEMENT
-		}
-
-		private fun getEventPathOfElement(
-			elementName: String,
-			previousPath: String,
-			depth: Int
-		): String {
-			var eventPath = if (previousPath.isNotEmpty()) previousPath else DEFAULT_ATOM_PATH
-
-			val elementStack = eventPath.split("/")
-					.filter { element -> element.isNotEmpty() }
-
-			when {
-				depth < elementStack.size -> eventPath = addElementToPositionOfDepth(elementName, elementStack, depth)
-				depth > elementStack.size -> eventPath += "/$elementName"
-				depth == elementStack.size -> if (elementName != elementStack[depth - 1]) eventPath =
-					replaceElementOnSameDepth(eventPath, elementName)
-			}
-
-			return eventPath
-		}
-
-		private fun replaceElementOnSameDepth(
-			eventPath: String,
-			elementName: String
-		) = "${eventPath.substringBeforeLast("/")}/$elementName"
-
-		private fun addElementToPositionOfDepth(
-			elementName: String,
-			elementStack: List<String>,
-			depth: Int
-		) = "${elementPathTillDepth(elementStack, depth)}/$elementName"
-
-		private fun elementPathTillDepth(
-			elementStack: List<String>,
-			depth: Int
-		): String {
-			var elementPath = String()
-			for (i in 0 until depth - 1) {
-				elementPath += "/${elementStack[i]}"
-			}
-
-			return elementPath
-		}
-	}
+	FEED_ENTRY_MEDIA_GROUP_MEDIA_CONTENT("/feed/entry/media:group/media:content")
 }

@@ -1,5 +1,6 @@
 package io.github.lazyengineer.feedparser.rss.rdf
 
+import io.github.lazyengineer.feedparser.ParserElement
 import io.github.lazyengineer.feedparser.model.DateUtil
 import io.github.lazyengineer.feedparser.model.channel.RDFChannel
 import io.github.lazyengineer.feedparser.model.namespace.syndication.SyndicationUpdatePeriod
@@ -63,11 +64,10 @@ import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.RDF_TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.rdf.RDFParserElement.UNSUPPORTED_RDF_ELEMENT
 import java.util.Locale
 
 fun RDFChannel.mapEvent(
-	eventType: RDFParserElement,
+	eventType: ParserElement,
 	attributes: Map<String, String> = emptyMap(),
 	value: String = String()
 ) {
@@ -138,8 +138,5 @@ fun RDFChannel.mapEvent(
 		RDF_ITEM_DUBLIN_CORE_RIGHTS -> items.last().dublinCoreNamespace?.rights = value
 
 		RDF_ITEM_CONTENT_ENCODED -> items.last().contentNamespace?.encoded = value
-
-		UNSUPPORTED_RDF_ELEMENT -> {
-		}
 	}
 }

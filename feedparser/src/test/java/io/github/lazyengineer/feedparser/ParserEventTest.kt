@@ -1,6 +1,5 @@
 package io.github.lazyengineer.feedparser
 
-import io.github.lazyengineer.feedparser.rss.RSSParserElement
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_CATEGORY
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_CLOUD
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.CHANNEL_COPYRIGHT
@@ -37,11 +36,11 @@ import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_PUB_DATE
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_SOURCE
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.ITEM_TITLE
+import io.github.lazyengineer.feedparser.rss.RSSParserElement.RSS
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_DESCRIPTION
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import org.amshove.kluent.`should equal`
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -54,9 +53,9 @@ class ParserEventTest {
 	fun `find parser event with depth smaller one should return unsupported event`() {
 		val depth = (Int.MIN_VALUE until 1).random()
 
-		val event = RSSParserElement.from(elementName = "some element name", previousPath = "random path", depth = depth)
+		val event = ParserElement.from(elementName = "some element name", previousPath = "random path", depth = depth)
 
-		event `should equal` UNSUPPORTED_RSS_ELEMENT
+		event `should equal` null
 	}
 
 	@Test
@@ -64,9 +63,9 @@ class ParserEventTest {
 		val elementName = "rss"
 		val depth = 1
 
-		val event = RSSParserElement.from(elementName = elementName, previousPath = "", depth = depth)
+		val event = ParserElement.from(elementName = elementName, previousPath = "", depth = depth)
 
-		event `should equal` UNSUPPORTED_RSS_ELEMENT
+		event `should equal` RSS
 	}
 
 	@Test
@@ -74,20 +73,9 @@ class ParserEventTest {
 		val elementName = "channel"
 		val depth = 2
 
-		val event = RSSParserElement.from(elementName = elementName, previousPath = "", depth = depth)
+		val event = ParserElement.from(elementName = elementName, previousPath = "", depth = depth)
 
-		event `should equal` UNSUPPORTED_RSS_ELEMENT
-	}
-
-	@Test
-	fun `find title parser event in channel path even previous path is empty should return channel title event`() {
-		val elementName = "title"
-		val emptyPath = ""
-		val depth = 3
-
-		val event = RSSParserElement.from(elementName = elementName, previousPath = emptyPath, depth = depth)
-
-		event `should equal` CHANNEL_TITLE
+		event `should equal` null
 	}
 
 	@Test
@@ -96,7 +84,7 @@ class ParserEventTest {
 		val path = "/rss/channel"
 		val depth = 3
 
-		val event = RSSParserElement.from(elementName = elementName, previousPath = path, depth = depth)
+		val event = ParserElement.from(elementName = elementName, previousPath = path, depth = depth)
 
 		event `should equal` CHANNEL_TITLE
 	}
@@ -107,7 +95,7 @@ class ParserEventTest {
 		val path = "/rss/channel/item"
 		val depth = 4
 
-		val event = RSSParserElement.from(elementName = elementName, previousPath = path, depth = depth)
+		val event = ParserElement.from(elementName = elementName, previousPath = path, depth = depth)
 
 		event `should equal` ITEM_TITLE
 	}
@@ -119,7 +107,7 @@ class ParserEventTest {
 		val channelLevelDepth = 3
 
 		val event =
-			RSSParserElement.from(elementName = elementName, previousPath = previousItemPath, depth = channelLevelDepth)
+			ParserElement.from(elementName = elementName, previousPath = previousItemPath, depth = channelLevelDepth)
 
 		event `should equal` CHANNEL_TITLE
 	}
@@ -130,7 +118,7 @@ class ParserEventTest {
 		val previousItemPath = "/rss/channel/item/title"
 		val depth = 3
 
-		val event = RSSParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
+		val event = ParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
 
 		event `should equal` CHANNEL_ITEM
 	}
@@ -141,7 +129,7 @@ class ParserEventTest {
 		val previousItemPath = "/rss/channel/item/title/deep/deeper/deepest"
 		val depth = 3
 
-		val event = RSSParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
+		val event = ParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
 
 		event `should equal` CHANNEL_ITEM
 	}
@@ -152,7 +140,7 @@ class ParserEventTest {
 		val previousItemPath = "/rss/channel/item/title/deep/deeper/deepest"
 		val depth = 3
 
-		val event = RSSParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
+		val event = ParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
 
 		event `should equal` CHANNEL_IMAGE
 	}
@@ -163,7 +151,7 @@ class ParserEventTest {
 		val previousItemPath = "/rss/channel/title"
 		val depth = 3
 
-		val event = RSSParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
+		val event = ParserElement.from(elementName = newItemEvent, previousPath = previousItemPath, depth = depth)
 
 		event `should equal` CHANNEL_TITLE
 	}
@@ -173,26 +161,26 @@ class ParserEventTest {
 		val previousPath = "/rss/channel"
 		val depth = 3
 
-		val event1 = RSSParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
-		val event2 = RSSParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
-		val event3 = RSSParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
-		val event4 = RSSParserElement.from(elementName = "category", previousPath = previousPath, depth = depth)
-		val event5 = RSSParserElement.from(elementName = "cloud", previousPath = previousPath, depth = depth)
-		val event6 = RSSParserElement.from(elementName = "copyright", previousPath = previousPath, depth = depth)
-		val event7 = RSSParserElement.from(elementName = "docs", previousPath = previousPath, depth = depth)
-		val event8 = RSSParserElement.from(elementName = "generator", previousPath = previousPath, depth = depth)
-		val event9 = RSSParserElement.from(elementName = "language", previousPath = previousPath, depth = depth)
-		val event10 = RSSParserElement.from(elementName = "lastBuildDate", previousPath = previousPath, depth = depth)
-		val event11 = RSSParserElement.from(elementName = "managingEditor", previousPath = previousPath, depth = depth)
-		val event12 = RSSParserElement.from(elementName = "pubDate", previousPath = previousPath, depth = depth)
-		val event13 = RSSParserElement.from(elementName = "rating", previousPath = previousPath, depth = depth)
-		val event14 = RSSParserElement.from(elementName = "skipDays", previousPath = previousPath, depth = depth)
-		val event15 = RSSParserElement.from(elementName = "skipHours", previousPath = previousPath, depth = depth)
-		val event16 = RSSParserElement.from(elementName = "ttl", previousPath = previousPath, depth = depth)
-		val event17 = RSSParserElement.from(elementName = "webMaster", previousPath = previousPath, depth = depth)
-		val event18 = RSSParserElement.from(elementName = "image", previousPath = previousPath, depth = depth)
-		val event19 = RSSParserElement.from(elementName = "textInput", previousPath = previousPath, depth = depth)
-		val event20 = RSSParserElement.from(elementName = "item", previousPath = previousPath, depth = depth)
+		val event1 = ParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
+		val event2 = ParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
+		val event3 = ParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
+		val event4 = ParserElement.from(elementName = "category", previousPath = previousPath, depth = depth)
+		val event5 = ParserElement.from(elementName = "cloud", previousPath = previousPath, depth = depth)
+		val event6 = ParserElement.from(elementName = "copyright", previousPath = previousPath, depth = depth)
+		val event7 = ParserElement.from(elementName = "docs", previousPath = previousPath, depth = depth)
+		val event8 = ParserElement.from(elementName = "generator", previousPath = previousPath, depth = depth)
+		val event9 = ParserElement.from(elementName = "language", previousPath = previousPath, depth = depth)
+		val event10 = ParserElement.from(elementName = "lastBuildDate", previousPath = previousPath, depth = depth)
+		val event11 = ParserElement.from(elementName = "managingEditor", previousPath = previousPath, depth = depth)
+		val event12 = ParserElement.from(elementName = "pubDate", previousPath = previousPath, depth = depth)
+		val event13 = ParserElement.from(elementName = "rating", previousPath = previousPath, depth = depth)
+		val event14 = ParserElement.from(elementName = "skipDays", previousPath = previousPath, depth = depth)
+		val event15 = ParserElement.from(elementName = "skipHours", previousPath = previousPath, depth = depth)
+		val event16 = ParserElement.from(elementName = "ttl", previousPath = previousPath, depth = depth)
+		val event17 = ParserElement.from(elementName = "webMaster", previousPath = previousPath, depth = depth)
+		val event18 = ParserElement.from(elementName = "image", previousPath = previousPath, depth = depth)
+		val event19 = ParserElement.from(elementName = "textInput", previousPath = previousPath, depth = depth)
+		val event20 = ParserElement.from(elementName = "item", previousPath = previousPath, depth = depth)
 
 		event1 `should equal` CHANNEL_TITLE
 		event2 `should equal` CHANNEL_LINK
@@ -221,16 +209,16 @@ class ParserEventTest {
 		val previousPath = "/rss/channel/item"
 		val depth = 4
 
-		val event1 = RSSParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
-		val event2 = RSSParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
-		val event3 = RSSParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
-		val event4 = RSSParserElement.from(elementName = "enclosure", previousPath = previousPath, depth = depth)
-		val event5 = RSSParserElement.from(elementName = "author", previousPath = previousPath, depth = depth)
-		val event6 = RSSParserElement.from(elementName = "source", previousPath = previousPath, depth = depth)
-		val event7 = RSSParserElement.from(elementName = "category", previousPath = previousPath, depth = depth)
-		val event8 = RSSParserElement.from(elementName = "comments", previousPath = previousPath, depth = depth)
-		val event9 = RSSParserElement.from(elementName = "guid", previousPath = previousPath, depth = depth)
-		val event10 = RSSParserElement.from(elementName = "pubDate", previousPath = previousPath, depth = depth)
+		val event1 = ParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
+		val event2 = ParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
+		val event3 = ParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
+		val event4 = ParserElement.from(elementName = "enclosure", previousPath = previousPath, depth = depth)
+		val event5 = ParserElement.from(elementName = "author", previousPath = previousPath, depth = depth)
+		val event6 = ParserElement.from(elementName = "source", previousPath = previousPath, depth = depth)
+		val event7 = ParserElement.from(elementName = "category", previousPath = previousPath, depth = depth)
+		val event8 = ParserElement.from(elementName = "comments", previousPath = previousPath, depth = depth)
+		val event9 = ParserElement.from(elementName = "guid", previousPath = previousPath, depth = depth)
+		val event10 = ParserElement.from(elementName = "pubDate", previousPath = previousPath, depth = depth)
 
 		event1 `should equal` ITEM_TITLE
 		event2 `should equal` ITEM_LINK
@@ -249,12 +237,12 @@ class ParserEventTest {
 		val previousPath = "/rss/channel/image"
 		val depth = 4
 
-		val event1 = RSSParserElement.from(elementName = "url", previousPath = previousPath, depth = depth)
-		val event2 = RSSParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
-		val event3 = RSSParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
-		val event4 = RSSParserElement.from(elementName = "width", previousPath = previousPath, depth = depth)
-		val event5 = RSSParserElement.from(elementName = "height", previousPath = previousPath, depth = depth)
-		val event6 = RSSParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
+		val event1 = ParserElement.from(elementName = "url", previousPath = previousPath, depth = depth)
+		val event2 = ParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
+		val event3 = ParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
+		val event4 = ParserElement.from(elementName = "width", previousPath = previousPath, depth = depth)
+		val event5 = ParserElement.from(elementName = "height", previousPath = previousPath, depth = depth)
+		val event6 = ParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
 
 		event1 `should equal` IMAGE_URL
 		event2 `should equal` IMAGE_TITLE
@@ -269,10 +257,10 @@ class ParserEventTest {
 		val previousPath = "/rss/channel/textInput"
 		val depth = 4
 
-		val event1 = RSSParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
-		val event2 = RSSParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
-		val event3 = RSSParserElement.from(elementName = "name", previousPath = previousPath, depth = depth)
-		val event4 = RSSParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
+		val event1 = ParserElement.from(elementName = "title", previousPath = previousPath, depth = depth)
+		val event2 = ParserElement.from(elementName = "description", previousPath = previousPath, depth = depth)
+		val event3 = ParserElement.from(elementName = "name", previousPath = previousPath, depth = depth)
+		val event4 = ParserElement.from(elementName = "link", previousPath = previousPath, depth = depth)
 
 		event1 `should equal` TEXT_INPUT_TITLE
 		event2 `should equal` TEXT_INPUT_DESCRIPTION

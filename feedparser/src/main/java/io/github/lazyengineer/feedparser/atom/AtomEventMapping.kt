@@ -1,5 +1,6 @@
 package io.github.lazyengineer.feedparser.atom
 
+import io.github.lazyengineer.feedparser.ParserElement
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_EMAIL
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.ENTRY_AUTHOR_NAME
@@ -95,7 +96,6 @@ import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_RIGHTS
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_SUBTITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_TITLE
 import io.github.lazyengineer.feedparser.atom.AtomParserElement.FEED_UPDATED
-import io.github.lazyengineer.feedparser.atom.AtomParserElement.UNSUPPORTED_ATOM_ELEMENT
 import io.github.lazyengineer.feedparser.model.DateUtil
 import io.github.lazyengineer.feedparser.model.atom.AtomEntry
 import io.github.lazyengineer.feedparser.model.channel.AtomChannel
@@ -139,7 +139,7 @@ import io.github.lazyengineer.feedparser.model.namespace.media.MediaThumbnail
 import io.github.lazyengineer.feedparser.model.namespace.media.MediaTitle
 
 fun AtomChannel.mapEvent(
-	eventType: AtomParserElement,
+	eventType: ParserElement,
 	attributes: Map<String, String> = emptyMap(),
 	value: String = String()
 ) {
@@ -322,8 +322,5 @@ fun AtomChannel.mapEvent(
 						)
 				)
 		)
-
-		UNSUPPORTED_ATOM_ELEMENT -> {
-		}
 	}
 }

@@ -1,5 +1,6 @@
 package io.github.lazyengineer.feedparser.rss
 
+import io.github.lazyengineer.feedparser.ParserElement
 import io.github.lazyengineer.feedparser.model.DateUtil
 import io.github.lazyengineer.feedparser.model.channel.RSSChannel
 import io.github.lazyengineer.feedparser.model.namespace.atom.AtomAuthor
@@ -254,11 +255,10 @@ import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_DESCRIP
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_LINK
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_NAME
 import io.github.lazyengineer.feedparser.rss.RSSParserElement.TEXT_INPUT_TITLE
-import io.github.lazyengineer.feedparser.rss.RSSParserElement.UNSUPPORTED_RSS_ELEMENT
 import java.util.Locale
 
 fun RSSChannel.mapEvent(
-	eventType: RSSParserElement,
+	eventType: ParserElement,
 	attributes: Map<String, String> = emptyMap(),
 	value: String = String()
 ) {
@@ -554,8 +554,5 @@ fun RSSChannel.mapEvent(
 		CHANNEL_ITEM_ATOM_CONTRIBUTOR_NAME -> items.last().atomNamespace?.contributors?.last()?.name = value
 		CHANNEL_ITEM_ATOM_CONTRIBUTOR_EMAIL -> items.last().atomNamespace?.contributors?.last()?.email = value
 		CHANNEL_ITEM_ATOM_CONTRIBUTOR_URI -> items.last().atomNamespace?.contributors?.last()?.uri = value
-
-		UNSUPPORTED_RSS_ELEMENT -> {
-		}
 	}
 }
