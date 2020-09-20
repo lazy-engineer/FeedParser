@@ -1,8 +1,10 @@
 package io.github.lazyengineer.feedparser
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import io.github.lazyengineer.feedparser.databinding.FeedItemBinding
 import io.github.lazyengineer.feedparser.model.feed.FeedItem
 
@@ -22,12 +24,20 @@ class FeedItemAdapter(private val items: List<FeedItem>) :
 	): ViewHolder {
 		val inflater = LayoutInflater.from(parent.context)
 		val binding = FeedItemBinding.inflate(inflater, parent, false)
-		return ViewHolder(binding)
+		return ViewHolder(parent.context, binding)
 	}
 
-	class ViewHolder(private val binding: FeedItemBinding) : RecyclerView.ViewHolder(binding.root) {
+	class ViewHolder(
+		private val context: Context,
+		private val binding: FeedItemBinding
+	) : RecyclerView.ViewHolder(binding.root) {
 		fun bind(item: FeedItem) {
 			binding.itemTitle.text = item.title
+			item.mediaNamespace?.thumbnails?.map {
+				Picasso.with(context)
+						.load(it.attributes?.url)
+						.into(binding.itemImage)
+			}
 		}
 	}
 }
