@@ -1,4 +1,4 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

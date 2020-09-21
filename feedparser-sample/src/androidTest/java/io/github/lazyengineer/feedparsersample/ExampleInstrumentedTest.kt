@@ -1,4 +1,4 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

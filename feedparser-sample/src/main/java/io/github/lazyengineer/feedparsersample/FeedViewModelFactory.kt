@@ -1,4 +1,4 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

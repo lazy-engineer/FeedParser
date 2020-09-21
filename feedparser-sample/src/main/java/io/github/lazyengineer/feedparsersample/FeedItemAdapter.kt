@@ -1,12 +1,12 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import io.github.lazyengineer.feedparser.databinding.FeedItemBinding
 import io.github.lazyengineer.feedparser.model.feed.FeedItem
+import io.github.lazyengineer.feedparsersample.databinding.FeedItemBinding
 
 class FeedItemAdapter(private val items: List<FeedItem>) :
 		RecyclerView.Adapter<FeedItemAdapter.ViewHolder>() {

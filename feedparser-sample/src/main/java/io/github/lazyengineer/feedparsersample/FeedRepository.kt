@@ -1,5 +1,6 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
+import io.github.lazyengineer.feedparser.FeedParser
 import io.github.lazyengineer.feedparser.model.feed.Feed
 import okhttp3.OkHttpClient
 import okhttp3.Request

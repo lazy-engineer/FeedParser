@@ -1,4 +1,4 @@
-package io.github.lazyengineer.feedparser
+package io.github.lazyengineer.feedparsersample
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.github.lazyengineer.feedparser.databinding.ActivityMainBinding
 import io.github.lazyengineer.feedparser.model.feed.FeedItem
 import io.github.lazyengineer.feedparser.model.feed.RSSFeed
+import io.github.lazyengineer.feedparsersample.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 
 class FeedActivity : AppCompatActivity() {
