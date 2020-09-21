@@ -44,3 +44,5 @@ dependencies {
   androidTestImplementation "androidx.annotation:annotation:$annotation_version"
   androidTestImplementation "androidx.test:rules:$test_rules_version"
 }
+
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
