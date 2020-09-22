@@ -30,7 +30,7 @@ android {
 
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
-  implementation project(path: ':feedparser')
+  implementation "io.github.lazy-engineer:feedparser:0.1.0"
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "androidx.core:core-ktx:$ktx_core_version"
