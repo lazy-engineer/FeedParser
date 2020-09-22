@@ -45,4 +45,4 @@ dependencies {
   androidTestImplementation "androidx.test:rules:$test_rules_version"
 }
 
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+apply from: "maven-push.gradle"
