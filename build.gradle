@@ -22,6 +22,7 @@ buildscript {
     recyclerview_version = "1.1.0"
     cardview_version = "1.0.0"
     picasso_version = "2.5.2"
+    feedparser_version = "0.1.0"
 
     junit_version = "4.13"
     android_junit_version = "1.1.2"
